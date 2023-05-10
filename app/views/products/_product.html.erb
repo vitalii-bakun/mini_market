@@ -1,0 +1,17 @@
+<div class="card" style="width: 18rem;">
+  <% if product.presentation.attached? %>
+    <%= image_tag product.presentation ,class: 'card-img-top' %>
+  <% else %>
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#868e96"></rect>
+      <text x="35%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+    </svg>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= product.title %></h5>
+    <p class="card-text"><%= product.description %></p>
+    <%= link_to product.price, product, class: "btn btn-outline-primary" %>
+    <%= link_to "More", product, class: "btn btn-primary" %>
+  </div>
+</div>
