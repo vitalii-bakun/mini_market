@@ -3,8 +3,6 @@
   <%= link_to "Back to products", products_path %>
   <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
-
-
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
@@ -26,17 +24,10 @@
           <div class="container text-center">
             <div class="row">
               <div class="col">
-                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= @product.price %></span>
+                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= number_to_currency_uah(@product.price) %></span>
               </div>
               <div class="col">
-                <form>
-                  <div class="mb-1">
-                    <input type="number" class="form-control" value="1" min="1" max id="Quantity" required>
-                  </div>
-                  <div class="mb-1">
-                    <button type="submit" class="btn btn-primary">Buy</button>
-                  </div>
-                </form>
+                <%= render partial: 'products/add_to_cart_form', locals: { id: @product.id } %>
               </div>
             </div>
           </div>
@@ -45,4 +36,3 @@
     </div>
   </div>
 </div>
-

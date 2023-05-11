@@ -30,4 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  cart:
+    create:
+      success: 'Product added to cart'
+    destroy:
+      success: 'Product removed from cart'
+      not_found: "Product not found in cart"
+  checkout:
+    create:
+      success: 'Order successfully created'

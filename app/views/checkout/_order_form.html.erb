@@ -1,0 +1,37 @@
+<%= form_with url: checkout_index_path do |f| %>
+  <div class="mb-3">
+    <%= f.label 'First name', class: "form-label" %>
+    <%= f.text_field 'customer[first_name]', class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Address', class: "form-label" %>
+    <%= f.text_field 'customer[address]', class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Mobile phone', class: "form-label" %>
+    <%= f.telephone_field 'customer[phone]', class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Comment', class: "form-label" %>
+    <%= f.text_area 'customer[comment]', class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Change sum', class: "form-label" %>
+    <%= f.number_field 'customer[change]', min: 0, max: true, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Don\'t call', class: "form-check-label" %>
+    <%= f.check_box 'customer[dont_call]', class: 'form-check-input' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Discount', class: "form-label" %>
+    <%= f.text_field 'customer[discount]', class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'Payment method', class: "form-label" %>
+    <%= f.select 'customer[payment_method]', [['Cash', :cash],['Card', :card],['Service', :service]], {}, class: 'form-select' %>
+  </div>
+  <div class="mb-3">
+    <%= f.submit 'Confirm the order', class: 'btn btn-primary' %>
+  </div>
+<% end %>

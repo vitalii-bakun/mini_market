@@ -1,17 +1,25 @@
 <div class="card" style="width: 18rem;">
   <% if product.presentation.attached? %>
-    <%= image_tag product.presentation ,class: 'card-img-top' %>
+    <%= image_tag product.presentation, class: 'card-img-top' %>
   <% else %>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-      <title>Placeholder</title>
       <rect width="100%" height="100%" fill="#868e96"></rect>
       <text x="35%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
     </svg>
   <% end %>
   <div class="card-body">
-    <h5 class="card-title"><%= product.title %></h5>
+    <%= link_to product do %>
+      <h5 class="card-title">
+        <%= product.title %>
+      </h5>
+    <% end %>
     <p class="card-text"><%= product.description %></p>
-    <%= link_to product.price, product, class: "btn btn-outline-primary" %>
-    <%= link_to "More", product, class: "btn btn-primary" %>
+
+    <%= content_tag :p, number_to_currency_uah(product.price), class: "border-primary card" %>
+
+    <%= form_with url: product_add_to_cart_path(product) do |f| %>
+      <%= f.hidden_field 'quantity', value: 1 %>
+      <%= f.submit "Add to cart", class: "btn btn-primary card-text" %>
+    <% end %>
   </div>
 </div>

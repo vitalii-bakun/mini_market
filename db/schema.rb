@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_151107) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_152223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,9 +42,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_151107) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "address", null: false
+    t.string "phone", null: false
+    t.text "comment"
+    t.boolean "dont_call", default: false
+    t.decimal "change", precision: 8, scale: 2
+    t.string "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_customer_product", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.integer "payment_method", default: 0
+    t.index ["customer_id"], name: "index_order_customer_product_on_customer_id"
+    t.index ["product_id"], name: "index_order_customer_product_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,4 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_151107) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "order_customer_product", "customers"
+  add_foreign_key "order_customer_product", "products"
 end

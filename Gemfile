@@ -65,3 +65,5 @@ end
 gem "bootstrap", "~> 5.2"
 
 gem "image_processing", "~> 1.12"
+
+gem "faker", "~> 3.2"

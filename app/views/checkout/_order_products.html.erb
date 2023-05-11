@@ -1,0 +1,9 @@
+<% card_products.each do |card_product| %>
+  <div class="card" style="margin: 10px 0 10px 0">
+    <%= link_to card_product.product.title, product_path(card_product.product), class: 'card-title' %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= number_to_currency_uah(card_product.product.price) %></li>
+      <li class="list-group-item"><%= card_product.quantity %></li>
+    </ul>
+  </div>
+<% end %>

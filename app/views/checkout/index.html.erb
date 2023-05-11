@@ -1,0 +1,13 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <%= render 'order_form' %>
+    </div>
+    <div class="col">
+      <%= render partial: 'order_products', locals: { card_products: @card_products } %>
+     <div>
+        Total price: <%= number_to_currency_uah(@card_products.sum(&:total_price)) %>
+     </div>
+    </div>
+  </div>
+</div>
