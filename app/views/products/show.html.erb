@@ -9,10 +9,9 @@
       <% if @product.presentation.attached? %>
         <%= image_tag @product.presentation ,class: 'img-fluid rounded-start' %>
       <% else %>
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Image" preserveAspectRatio="xMidYMid slice" focusable="false">
           <rect width="100%" height="100%" fill="#868e96"></rect>
-          <text x="35%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+          <text x="35%" y="50%" fill="#dee2e6" dy=".3em">No Image</text>
         </svg>
       <% end %>
     </div>
@@ -27,7 +26,12 @@
                 <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= number_to_currency_uah(@product.price) %></span>
               </div>
               <div class="col">
-                <%= render partial: 'products/add_to_cart_form', locals: { id: @product.id } %>
+                <%= form_with url: product_cart_add_path(@product), class: "container text-center" do |f| %>
+                  <div class="row">
+                    <%= f.number_field 'quantity', value: 1, min: "1", max: true, id: "Quantity", class: 'form-control col' %>
+                    <%= f.submit "Buy", class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

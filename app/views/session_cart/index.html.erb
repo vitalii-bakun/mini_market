@@ -1,0 +1,47 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @carts.each do |cart| %>
+      <tr>
+        <th scope="row">
+          <%= link_to cart.product.title, product_path(cart.product) %>
+        </th>
+        <td>
+          <%= number_to_currency_uah(cart.product.price) %>
+        </td>
+        <td>
+          <%= form_with url: product_cart_update_path(cart.product), method: :patch, class: "container text-center" do |f| %>
+            <div class="row">
+              <%= f.number_field 'quantity', value: cart.quantity, min: "1", max: true, id: "Quantity", class: 'form-control col' %>
+              <%= f.submit "Update", class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <%= number_to_currency_uah(cart.total_price) %>
+        </td>
+        <td>
+          <%= button_to "Remove", product_cart_destroy_path(cart.product) , method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td><%= @carts.sum(&:quantity) %></td>
+      <td><%= number_to_currency_uah(@carts.sum(&:total_price)) %></td>
+      <td><%= button_to "Remove All", cart_destroy_all_path , method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  </tfoot>
+</table>
+<%= link_to 'Make an order', new_customer_path, class: 'btn btn-primary' %>

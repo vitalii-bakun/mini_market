@@ -30,12 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  cart:
-    create:
+  session_cart:
+    add:
       success: 'Product added to cart'
+      error: "Product could not be added to cart"
     destroy:
       success: 'Product removed from cart'
-      not_found: "Product not found in cart"
-  checkout:
+    update:
+      success: 'Product quantity updated'
+      error: 'Product quantity could not be updated'
+    destroy_all: 
+      success: 'All products removed from cart'
+      
+  customers:
+    not_products: "There are no products in your cart"
     create:
-      success: 'Order successfully created'
+      success: 'Customer was successfully created'
+      error: 'Customer could not be created'
+    show:
+      not_found: 'Customer not found'

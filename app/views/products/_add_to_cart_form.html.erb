@@ -1,6 +1,0 @@
-<%= form_with url: product_add_to_cart_path(product_id:id), class: "container text-center" do |f| %>
-  <div class="row">
-    <%= f.number_field 'quantity', value: 1, min: "1", max: true, id: "Quantity", class: 'form-control col' %>
-    <%= f.submit "Buy", class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
-  </div>
-<% end %>

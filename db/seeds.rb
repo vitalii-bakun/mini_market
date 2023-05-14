@@ -7,47 +7,51 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'faker'
+require 'securerandom'
 
-4.times do
-  Customer.create!(first_name: Faker::Name.name, address: Faker::Address.full_address,
-                   phone: Faker::PhoneNumber.cell_phone_in_e164, comment: Faker::GreekPhilosophers.quote,
-                   dont_call: true, change: 12, discount: 'code here')
+# Create customers
+20.times do
+  payment_method = %i[card service cash].sample
+  status = %i[new_order send_order done_order canceled_order].sample
+  Customer.create(first_name: Faker::Name.name,
+                  address: Faker::Address.full_address,
+                  phone: Faker::PhoneNumber.phone_number_with_country_code,
+                  discount: SecureRandom.base36(16),
+                  dont_call: Faker::Boolean.boolean,
+                  payment_method:,
+                  status:,
+                  comment: Faker::Lorem.paragraph)
 end
 
-10.times do
-  Customer.create!(first_name: Faker::Name.name, address: Faker::Address.full_address,
-                   phone: Faker::PhoneNumber.cell_phone_in_e164, comment: Faker::GreekPhilosophers.quote,
-                   dont_call: false, change: 0, discount: '')
-end
+# Create products
+20.times do
+  p = Product.new(title: Faker::Commerce.product_name,
+                  price: Faker::Commerce.price,
+                  description: Faker::Lorem.paragraph,
+                  body: Faker::Lorem.paragraph,
+                  available: Faker::Boolean.boolean)
 
-10.times do
-  p = Product.new(title: Faker::Commerce.product_name, price: Faker::Commerce.price,
-                  description: Faker::Lorem.paragraph, body: Faker::Lorem.paragraph, available: false)
-  p.presentation.attach(io: File.open('./tmp/storage/Original.png'), filename: 'Original.png',
-                        content_type: 'image/png')
+  if Faker::Boolean.boolean
+    p.presentation.attach(io: File.open('./tmp/storage/Original.png'),
+                          filename: Faker::File.file_name(directory_separator: '', ext: 'png'),
+                          content_type: 'image/png')
+  end
+
   p.save
 end
 
-10.times do
-  Product.create!(title: Faker::Commerce.product_name, price: Faker::Commerce.price,
-                  description: Faker::Lorem.paragraph, body: Faker::Lorem.paragraph, available: true)
-end
+# Create orders
+5.times do
+  # take random entities
+  customer = Customer.all.sample
 
-10.times do
-  p = Product.new(title: Faker::Commerce.product_name, price: Faker::Commerce.price,
-                  description: Faker::Lorem.paragraph, body: Faker::Lorem.paragraph, available: true)
-  p.presentation.attach(io: File.open('./tmp/storage/Original.png'), filename: 'Original.png',
-                        content_type: 'image/png')
-  p.save
-end
+  # add products in order
+  rand(10).times do
+    quantity = rand(1..100)
+    product = Product.all.sample
 
-10.times do
-  max = Customer.ids.max
-  min = Customer.ids.min
-  c = Customer.find(rand((min..max)))
-
-  max = Product.ids.max
-  min = Product.ids.min
-  p = Product.find(rand((min..max)))
-  OrderCustomerProduct.create!(customer: c, product: p, quantity: rand(1..10))
+    Order.create(customer:,
+                 product:,
+                 quantity:)
+  end
 end

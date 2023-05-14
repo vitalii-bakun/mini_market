@@ -1,14 +1,16 @@
 class CreateCustomers < ActiveRecord::Migration[7.0]
   def change
     create_table :customers do |t|
-      t.string :first_name, null: false
-      t.string :address, null: false
-      t.string :phone, null: false
-      t.text :comment
+      t.string :first_name, null: false, limit: 100
+      t.string :address, null: false, limit: 300
+      t.string :phone, null: false, unique: true
+      t.string :uuid, null: false, unique: true, index: true, limit: 36
+      t.string :discount, null: true, limit: 100
+      t.text :comment, null: true, limit: 300
       t.boolean :dont_call, default: false
-      t.decimal :change, precision: 8, scale: 2
-      t.string :discount
-
+      t.integer :payment_method, default: 0
+      t.integer :status, default: 0
+      
       t.timestamps
     end
   end
