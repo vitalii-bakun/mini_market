@@ -71,3 +71,5 @@ gem "faker", "~> 3.2"
 gem "devise", "~> 4.9"
 
 gem "cancancan", "~> 3.5"
+
+gem 'liqpay', github: 'liqpay/sdk-ruby'

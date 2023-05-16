@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/liqpay/sdk-ruby.git
+  revision: a7a990f1410bdfc281fcfc66828555b4bc1e6260
+  specs:
+    liqpay (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -249,6 +255,7 @@ DEPENDENCIES
   faker (~> 3.2)
   image_processing (~> 1.12)
   jbuilder
+  liqpay!
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
