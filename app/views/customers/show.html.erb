@@ -4,7 +4,12 @@
   <h2>Service: <%= @customer.payment_method %></h2>
   <h2>Status: <%= @customer.status %></h2>
 </div>
-
+<% if @html_form_pay %>
+  <div>
+    <h2>Payment:</h2>
+    <%= raw(@html_form_pay) %>
+  </div>
+<% end %>
 <table class="table">
   <thead>
     <tr>
@@ -24,7 +29,7 @@
       </tr>
     <% end %>
   </tbody>
-    <tfoot>
+  <tfoot>
     <tr>
       <th scope="row"></th>
       <td></td>

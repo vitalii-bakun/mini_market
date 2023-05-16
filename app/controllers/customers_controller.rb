@@ -6,11 +6,10 @@ class CustomersController < MarketController
   end
 
   def show
-    @customer = Customer.find_by_uuid(params[:id])
+    @customer = Customer.find_by_uuid!(params[:id])
 
-    return if @customer
-
-    redirect_to root_path, alert: t('.not_found')
+    # generating HTML payment form if the customer has chosen the service
+    call_service(@customer) if @customer.service?
   end
 
   def create
@@ -27,6 +26,12 @@ class CustomersController < MarketController
   end
 
   private
+
+  def call_service(customer)
+    @html_form_pay = LiqpayService.call(amount: customer.orders.sum(&:total_price),
+                                        description: 'Thank you for your order',
+                                        order_id: customer.uuid)
+  end
 
   def cart_has_not_products
     redirect_to root_path, alert: t('customers.not_products')
