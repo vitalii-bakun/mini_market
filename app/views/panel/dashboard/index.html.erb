@@ -1,0 +1,20 @@
+<h1>Dashboard</h1>
+<% if user_signed_in? %>
+  Hello, <%= current_user.email %>. <br>
+  Role: <b><%= current_user.role %></b>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+<% end %>
+<hr>
+<% if can? :status, Customer %>
+  <h2>Statuses Orders</h2>
+  <% Customer.statuses.each do |name| %>
+    <%= link_to name[0].gsub('_order', ' ').capitalize, panel_customers_status_path(status: name[0]), class: 'btn btn-primary' %>
+  <% end %>
+  <hr>
+<% end %>
+<% if can? :read, Product %>
+  <h2>Products</h2>
+  <%= link_to 'Products', panel_products_path, class: 'btn btn-primary' %>
+<% end %>

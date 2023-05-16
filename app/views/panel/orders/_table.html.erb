@@ -1,0 +1,22 @@
+<table class="table table-light table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price per unit</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+    <tr>
+      <th scope="row"><%= order.id %></th>
+      <td><%= link_to order.product.title, panel_product_path(order.product) %></td>
+      <td><%= number_to_currency_uah order.product.price %></td>
+      <td><%= order.quantity %></td>
+      <td><%= number_to_currency_uah order.total_price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

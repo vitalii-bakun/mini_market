@@ -1,5 +1,5 @@
 class CustomersController < MarketController
-  before_action :check_session_products, only: [:create], if: :session_products_empty?
+  before_action :cart_has_not_products, only: [:create], if: :session_products_empty?
 
   def new
     @customer = Customer.new
@@ -28,7 +28,7 @@ class CustomersController < MarketController
 
   private
 
-  def check_session_products
+  def cart_has_not_products
     redirect_to root_path, alert: t('customers.not_products')
   end
 

@@ -1,0 +1,41 @@
+<table class="table table-light table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Dont call</th>
+      <th scope="col">Payment method</th>
+      <th scope="col">Update status</th>
+      <th scope="col">Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <th scope="row"><%= customer.id %></th>
+        <td><%= customer.first_name %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.discount %></td>
+        <td><%= customer.comment %></td>
+        <td><%= customer.dont_call ? 'Yes' : 'No' %></td>
+        <td><%= customer.payment_method %></td>
+        <td>
+          <%= form_with model: customer, url: panel_customer_status_update_path(customer), method: :patch do |f| %>
+            <%= f.select :status, Customer.statuses.keys, class: 'form-select' %>
+            <%= f.submit 'Update', class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :read, Order %> <%= link_to "Orders", panel_customer_orders_path(customer), class: "btn btn-primary" %><% end %>
+         <% if can? :edit, Customer %> <%= link_to "Edit", edit_panel_customer_path(customer), class: "btn btn-primary" %> <% end %>
+          <% if can? :destroy, Customer %> <%= button_to "Delete", panel_customer_path(customer), method: :delete, class: "btn btn-danger" %><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

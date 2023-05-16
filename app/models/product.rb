@@ -8,5 +8,7 @@ class Product < ApplicationRecord
   validates :available, inclusion: { in: [true, false] }
 
   has_many :orders
-  has_many :unique_orders, through: :orders
+  has_many :customers, through: :orders
+
+  belongs_to :user
 end

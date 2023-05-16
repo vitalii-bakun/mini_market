@@ -1,0 +1,74 @@
+<%= form_with(model: customer, url: url) do |form| %>
+  <% if customer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :address, style: "display: block", class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :phone, style: "display: block", class: "form-label" %>
+    <%= form.phone_field :phone, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :uuid, style: "display: block", class: "form-label" %>
+    <%= form.text_field :uuid, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :discount, style: "display: block", class: "form-label" %>
+    <%= form.text_field :discount, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :comment, style: "display: block", class: "form-label" %>
+    <%= form.text_area :comment, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :dont_call, class: "form-check-label" %>
+    <%= form.check_box :dont_call, class: "form-check-input" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :payment_method, style: "display: block", class: "form-label" %>
+    <%= form.select :payment_method, %i[cash card service], class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :status, style: "display: block", class: "form-label" %>
+    <%= form.select :status, %i[new_order done_order canceled_order send_order], class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+
+  <%= form.submit class:'btn btn-primary' %>
+<% end %>

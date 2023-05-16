@@ -9,6 +9,11 @@
 require 'faker'
 require 'securerandom'
 
+# Create admin
+User.create(email: 'admin@admin.com', password: 'password')
+# Create manager
+User.create(email: 'manager@manager.com', password: 'password', role: User.roles[:manager])
+
 # Create customers
 20.times do
   payment_method = %i[card service cash].sample
@@ -29,7 +34,8 @@ end
                   price: Faker::Commerce.price,
                   description: Faker::Lorem.paragraph,
                   body: Faker::Lorem.paragraph,
-                  available: Faker::Boolean.boolean)
+                  available: Faker::Boolean.boolean,
+                  user: User.all.sample)
 
   if Faker::Boolean.boolean
     p.presentation.attach(io: File.open('./tmp/storage/Original.png'),
@@ -46,7 +52,7 @@ end
   customer = Customer.all.sample
 
   # add products in order
-  rand(10).times do
+  rand(1..10).times do
     quantity = rand(1..100)
     product = Product.all.sample
 
