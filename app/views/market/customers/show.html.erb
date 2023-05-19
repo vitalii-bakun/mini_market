@@ -33,8 +33,8 @@
     <tr>
       <th scope="row"></th>
       <td></td>
-      <td><%= @customer.orders.sum(&:quantity) %></td>
-      <td><%= number_to_currency_uah(@customer.orders.sum(&:total_price)) %></td>
+      <td><%= @customer.orders_total_quantity %></td>
+      <td><%= number_to_currency_uah(@customer.orders_total_price) %></td>
       <td></td>
     </tr>
   </tfoot>

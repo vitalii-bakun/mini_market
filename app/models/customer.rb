@@ -17,6 +17,14 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :products, through: :orders
 
+  def orders_total_price
+    orders.sum(&:total_price)
+  end
+
+  def orders_total_quantity
+    orders.sum(&:quantity)
+  end
+
   def create_orders(session_products)
     Product.where(id: session_products.keys).each do |product|
       Order.create(product:,
