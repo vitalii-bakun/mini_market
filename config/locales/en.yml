@@ -62,7 +62,7 @@ en:
         price: 'Price'
         buy: 'Buy'
     customers:
-      not_products: "There are no products in your cart"
+      cart_empty: "There are no products in your cart"
       create:
         success: 'Customer was successfully created'
         error: 'Customer could not be created'

@@ -36,7 +36,7 @@ module Market
     end
 
     def cart_has_not_products
-      redirect_to root_path, alert: t('customers.not_products')
+      redirect_to root_path, alert: t('market.customers.cart_empty')
     end
 
     def customer_params
