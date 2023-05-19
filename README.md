@@ -1,7 +1,8 @@
 # MiniMarket
 
-You must to visit the LiqPay and generate privet and public keys. 
-Then add to the environment RAILS.
+You must visit the LiqPay and generate private and public keys.
+
+Then add to the environment.
 
 For example
 ```bash
