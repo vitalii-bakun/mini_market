@@ -6,7 +6,7 @@
       <% else %>
         <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Image" preserveAspectRatio="xMidYMid slice" focusable="false">
           <rect width="100%" height="100%" fill="#868e96"></rect>
-          <text x="35%" y="50%" fill="#dee2e6" dy=".3em">No Image</text>
+          <text x="35%" y="50%" fill="#dee2e6" dy=".3em"><%= t('market.products.product.no_image') %></text>
         </svg>
       <% end %>
     </div>
@@ -23,7 +23,7 @@
               <div class="col">
                 <%= form_with url: product_cart_add_path(@product), class: "container text-center" do |f| %>
                   <div class="row">
-                    <%= f.number_field 'quantity', value: 1, min: "1", max: true, id: "Quantity", class: 'form-control col' %>
+                    <%= f.number_field 'quantity', value: 1, min: "1", max: true, class: 'form-control col' %>
                     <%= f.submit "Buy", class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
                   </div>
                 <% end %>

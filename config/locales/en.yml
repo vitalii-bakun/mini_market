@@ -30,22 +30,186 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  session_cart:
-    add:
-      success: 'Product added to cart'
-      error: "Product could not be added to cart"
-    destroy:
-      success: 'Product removed from cart'
-    update:
-      success: 'Product quantity updated'
-      error: 'Product quantity could not be updated'
-    destroy_all: 
-      success: 'All products removed from cart'
-      
-  customers:
-    not_products: "There are no products in your cart"
-    create:
-      success: 'Customer was successfully created'
-      error: 'Customer could not be created'
-    show:
-      not_found: 'Customer not found'
+  market:
+    session_cart:
+      add:
+        success: 'Product added to cart'
+        error: "Product could not be added to cart"
+      destroy:
+        success: 'Product removed from cart'
+      update:
+        success: 'Product quantity updated'
+        error: 'Product quantity could not be updated'
+      destroy_all: 
+        success: 'All products removed from cart'
+      index:
+        table:
+          name: 'Product name'
+          price: 'Price'
+          quantity: 'Quantity'
+          total: 'Total'
+          remove: 'Remove'
+        link: 
+          update: 'Update'
+          remove: 'Remove'
+          remove_all: 'Remove all'
+          make: 'Make a new order'
+    products:
+      product: 
+        no_img: 'No Image'
+        add_to_cart: 'Add to cart'
+      show:
+        price: 'Price'
+        buy: 'Buy'
+    customers:
+      not_products: "There are no products in your cart"
+      create:
+        success: 'Customer was successfully created'
+        error: 'Customer could not be created'
+      show:
+        not_found: 'Customer not found'
+        order_info:
+          first_name: 'Hello, %{name}!'
+          success: 'Your order has been sussesfully created.'
+          payment:
+            cash: 'Cash'
+            card: 'Card'
+            service: 'Online service'
+          status: 
+            new_order: 'New order'
+            send_order: 'Send order'
+            cancel_order: 'Cancel order'
+            done_order: 'Done order'
+        table:
+          name: 'Product name'
+          price: 'Price'
+          quantity: 'Quantity'
+          total: 'Total'
+      new:
+        form:
+          first_name: 'First name (Necessarily)'
+          address: 'Address (Necessarily)'
+          phone: 'Phone (Necessarily)'
+          comment: 'Comment (Not Necessarily)'
+          discount: 'Discount (If you have one)'
+          dont_call: "Don't call me"
+          pay:
+            cash: 'Pay cash'
+            card: 'Pay card'
+            service: 'Pay online service'
+          confirm: 'Confirm'
+  panel:
+    dashboard: 
+      index: 
+        title: 'Dashboard'
+        sign:
+          in: 'Sign in'
+          out: 'Sign out'
+        status: 
+          title: 'Status order'
+        products: 
+          title: 'Products'
+          link:
+            new_product: 'New product'
+            look_all: 'Look all'
+            
+    customers:
+      form:
+        first_name: 'First name'
+        address: 'Address'
+        phone: 'Phone'
+        uuid: 'UUID'
+        discount: 'Discount'
+        comment: 'Comment'
+        dont_call: "Don't call me"
+        pay:
+          name: 'Payment: '
+          cash: 'Cash'
+          card: 'Card'
+          service: 'Online service'
+        status:
+          name: 'Status order: '
+          new_order: 'New'
+          send_order: 'Send'
+          canceled_order: 'Cancel'
+          done_order: 'Done'
+      table:
+        first_name: 'First name'
+        address: 'Address'
+        phone: 'Phone'
+        discount: 'Discount'
+        comment: 'Comment'
+        dont_call: "Don't call me"
+        payment_method: 'Payment method'
+        status: 'Status order'
+        update: 'Update status'
+        control: 'Control'
+      status_update:
+        success: 'Customer status was successfully updated.'
+      update:
+        success: 'Customer was successfully updated.'
+      destroy:
+        success: 'Customer was successfully deleted.'
+    products:
+      form:
+        title: 'Product name'
+        price: 'Price per unit'
+        body: 'Full description'
+        description: 'Short description'
+        available: 'Available'
+        presentation: 'Presentation image'
+        submit: 'Send'
+      table:
+        title: 'Product name'
+        price: 'Price per unit'
+        available: 'Available'
+        description: 'Short description'
+        control:
+          name: 'Control'
+          delete: 'Delete'
+          edit: 'Edit'
+      edit:
+        title: 'Editing product'
+        link:
+          show: 'Show this product'
+          back: 'Back to products'
+      create:
+        success: 'Product was successfully created.'
+      update:
+        success: 'Product was successfully updated.'
+      destroy:
+        success: 'Product was successfully deleted.'
+      index:
+        link:
+          new_product: 'New product'
+      new:
+        title: 'New product'
+        link:
+          back: 'Back to products'
+      show:
+        link:
+          back: 'Back to products'
+          edit: 'Edit this product'
+          delete: 'Destroy this product'
+        no_image: 'No image'
+        price: 'Price:'
+    orders:
+      table:
+        name: 'Product name'
+        price: 'Price per unit'
+        quantity: 'Quantity'
+        total: 'Total price'
+  layout:
+    footer:
+      about:
+        title: 'About us'
+        content: "Some quick example text to build on the card title and make up the bulk of the card's content."
+      contacts: 
+        title: 'Contacts'
+      pages: 
+        title: 'Pages'
+    header:
+      link:
+        logo: 'MiniMarket'
+        home: 'Home'
+        cart: 'Cart'

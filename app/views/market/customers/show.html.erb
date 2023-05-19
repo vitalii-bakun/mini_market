@@ -1,22 +1,19 @@
 <div>
-  <h1>Hello, <%= @customer.first_name %>!</h1>
-  <h2>Your order has been sussesfully created.</h2>
-  <h2>Service: <%= @customer.payment_method %></h2>
-  <h2>Status: <%= @customer.status %></h2>
-</div>
-<% if @html_form_pay %>
-  <div>
-    <h2>Payment:</h2>
+  <h1><%= t('.order_info.first_name', name: @customer.first_name) %></h1>
+  <h2><%= t('.order_info.success') %></h2>
+  <h2><%= t(".order_info.payment.#{@customer.payment_method}") %></h2>
+  <% if @html_form_pay %>
     <%= raw(@html_form_pay) %>
-  </div>
-<% end %>
+  <% end %>
+  <h2><%= t(".order_info.status.#{@customer.status}") %></h2>
+</div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Product name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
+      <th scope="col"><%= t('.table.name') %></th>
+      <th scope="col"><%= t('.table.price') %></th>
+      <th scope="col"><%= t('.table.quantity') %></th>
+      <th scope="col"><%= t('.table.total') %></th>
     </tr>
   </thead>
   <tbody>

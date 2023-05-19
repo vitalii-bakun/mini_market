@@ -35,4 +35,12 @@ class Customer < ApplicationRecord
     # Clear hash of the session
     session_products.clear
   end
+
+  def self.payment_methods_keys_with_translate_text
+    Customer.payment_methods.keys.map { |key| [I18n.t("panel.customers.form.pay.#{key}"), key] }
+  end
+
+  def self.statuses_keys_with_translate_text
+    Customer.statuses.keys.map { |key| [I18n.t("panel.customers.form.status.#{key}"), key] }
+  end
 end

@@ -12,9 +12,9 @@ module Panel
 
     def update
       if @product.update(product_params)
-        redirect_to panel_product_path(@product), notice: 'Product was successfully updated.'
+        redirect_to panel_product_path(@product), notice: t('.success')
       else
-        redirect_to edit_panel_product_path(@product), notice: @product.errors
+        redirect_to edit_panel_product_path(@product), alert: @product.errors.full_messages
       end
     end
 
@@ -27,16 +27,16 @@ module Panel
       @product.user = current_user
 
       if @product.save
-        redirect_to panel_product_path(@product), notice: 'Product was successfully created.'
+        redirect_to panel_product_path(@product), notice: t('.success')
       else
-        redirect_to new_panel_product_path, alert: @product.errors
+        redirect_to new_panel_product_path, alert: @product.errors.full_messages
       end
     end
 
     def destroy
       @product.destroy
 
-      redirect_to panel_products_path, notice: 'Product was successfully destroyed.'
+      redirect_to panel_products_path, notice: t('.success')
     end
 
     private

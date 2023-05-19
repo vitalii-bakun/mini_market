@@ -3,47 +3,47 @@
     <div class="row">
       <div class="col">
         <div class="mb-3">
-          <%= f.label 'First name (Necessarily)', class: "form-label" %>
+          <%= f.label t('.form.first_name'), class: "form-label" %>
           <%= f.text_field :first_name, class: 'form-control' %>
         </div>
         <div class="mb-3">
-          <%= f.label 'Address (Necessarily)', class: "form-label" %>
+          <%= f.label t('.form.address'), class: "form-label" %>
           <%= f.text_field :address, class: 'form-control' %>
         </div>
         <div class="mb-3">
-          <%= f.label 'Mobile phone (Necessarily)', class: "form-label" %>
+          <%= f.label t('.form.phone'), class: "form-label" %>
           <%= f.telephone_field :phone, class: 'form-control' %>
         </div>
       </div>
       <div class="col">
         <div class="mb-3">
-          <%= f.label 'Comment (Not necessarily)', class: "form-label" %>
+          <%= f.label t('.form.comment'), class: "form-label" %>
           <%= f.text_area :comment, class: 'form-control' %>
         </div>
         <div class="mb-3">
-          <%= f.label 'Discount (If you have one)', class: "form-label" %>
+          <%= f.label t('.form.discount'), class: "form-label" %>
           <%= f.text_field :discount, class: 'form-control' %>
         </div>
         <div class="mb-3">
-          <%= f.label "Don't call me", class: "form-check-label" %>
+          <%= f.label t('.form.dont_call'), class: "form-check-label" %>
           <%= f.check_box :dont_call, class: 'form-check-input' %>
         </div>
         <div class="form-check">
-          <%= f.label 'Pay cash', class: "form-check-label" %>
+          <%= f.label t('.form.pay.cash'), class: "form-check-label" %>
           <%= f.radio_button :payment_method, :cash, class: 'form-check-input' %>
-           </div>
-          <div class="form-check">
-          <%= f.label 'Pay card', class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+          <%= f.label t('.form.pay.card'), class: "form-check-label" %>
           <%= f.radio_button :payment_method, :card, class: 'form-check-input' %>
-           </div>
-          <div class="form-check">
-          <%= f.label 'Pay online service', class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+          <%= f.label t('.form.pay.service'), class: "form-check-label" %>
           <%= f.radio_button :payment_method, :service, class: 'form-check-input' %>
         </div>
       </div>
     </div>
     <div class="mb-3">
-      <%= f.submit 'Confirm', class: 'btn btn-primary' %>
+      <%= f.submit t('.form.confirm'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

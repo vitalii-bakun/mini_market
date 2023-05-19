@@ -2,11 +2,11 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col">Available</th>
-      <th scope="col">Description</th>
-      <th scope="col">Control</th>
+      <th scope="col"><%= t('panel.products.table.title') %></th>
+      <th scope="col"><%= t('panel.products.table.price') %></th>
+      <th scope="col"><%= t('panel.products.table.available') %></th>
+      <th scope="col"><%= t('panel.products.table.description') %></th>
+      <th scope="col"><%= t('panel.products.table.control.name') %></th>
     </tr>
   </thead>
   <tbody>
@@ -15,16 +15,16 @@
         <th scope="row"><%= product.id %></th>
         <td><%= link_to product.title, panel_product_path(product) %></td>
         <td><%= number_to_currency_uah(product.price) %></td>
-        <td><%= product.available? ? 'yes' : 'no' %></td>
+        <td><%= product.available %></td>
         <td><%= product.description %></td>
         <td>
           <div class="container text-center">
             <div class="row">
               <div class="col">
-             <% if can? :edit, Product %>    <%= link_to 'Edit', edit_panel_product_path(product), class: 'btn btn-primary' %><% end %>
+                <% if can? :edit, Product %> <%= link_to t('panel.products.table.control.edit'), edit_panel_product_path(product), class: 'btn btn-primary' %><% end %>
               </div>
               <div class="col">
-              <% if can? :destroy, Product %>   <%= button_to 'Delete', panel_product_path(product), method: :delete, class: 'btn btn-danger' %> <% end %>
+                <% if can? :destroy, Product %> <%= button_to t('panel.products.table.control.delete'), panel_product_path(product), method: :delete, class: 'btn btn-danger' %> <% end %>
               </div>
             </div>
           </div>

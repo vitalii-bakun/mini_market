@@ -1,11 +1,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Product</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
-      <th scope="col">Remove</th>
+      <th scope="col"><%= t('.table.name') %></th>
+      <th scope="col"><%= t('.table.price') %></th>
+      <th scope="col"><%= t('.table.quantity') %></th>
+      <th scope="col"><%= t('.table.total') %></th>
+      <th scope="col"><%= t('.table.remove') %></th>
     </tr>
   </thead>
   <tbody>
@@ -20,8 +20,8 @@
         <td>
           <%= form_with url: product_cart_update_path(cart.product), method: :patch, class: "container text-center" do |f| %>
             <div class="row">
-              <%= f.number_field 'quantity', value: cart.quantity, min: "1", max: true, id: "Quantity", class: 'form-control col' %>
-              <%= f.submit "Update", class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
+              <%= f.number_field 'quantity', value: cart.quantity, min: "1", max: true, class: 'form-control col' %>
+              <%= f.submit t('.link.update'), class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
             </div>
           <% end %>
         </td>
@@ -29,7 +29,7 @@
           <%= number_to_currency_uah(cart.total_price) %>
         </td>
         <td>
-          <%= button_to "Remove", product_cart_destroy_path(cart.product) , method: :delete, class: "btn btn-danger" %>
+          <%= button_to t('.link.remove'), product_cart_destroy_path(cart.product) , method: :delete, class: "btn btn-danger" %>
         </td>
       </tr>
     <% end %>
@@ -40,8 +40,8 @@
       <td></td>
       <td><%= @carts.sum(&:quantity) %></td>
       <td><%= number_to_currency_uah(@carts.sum(&:total_price)) %></td>
-      <td><%= button_to "Remove All", cart_destroy_all_path , method: :delete, class: "btn btn-danger" %></td>
+      <td><%= button_to t('.link.remove_all'), cart_destroy_all_path , method: :delete, class: "btn btn-danger" %></td>
     </tr>
   </tfoot>
 </table>
-<%= link_to 'Make an order', new_customer_path, class: 'btn btn-primary' %>
+<%= link_to t('.link.make'), new_customer_path, class: 'btn btn-primary' %>
