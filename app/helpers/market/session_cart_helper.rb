@@ -1,7 +1,7 @@
 module Market
   module SessionCartHelper
-    def number_to_currency_uah(value)
-      number_to_currency(value, precision: 2, unit: '₴')
+    def add_currency_symbol(value)
+      number_to_currency(value, precision: 2, unit: I18n.t('currency_symbol'))
     end
   end
 end

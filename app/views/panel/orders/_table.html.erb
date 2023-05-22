@@ -13,10 +13,19 @@
     <tr>
       <th scope="row"><%= order.id %></th>
       <td><%= link_to order.product.title, panel_product_path(order.product) %></td>
-      <td><%= number_to_currency_uah order.product.price %></td>
+      <td><%= add_currency_symbol order.current_price %></td>
       <td><%= order.quantity %></td>
-      <td><%= number_to_currency_uah order.total_price %></td>
+      <td><%= add_currency_symbol order.total_price %></td>
     </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr>
+       <td></td>
+      <td></td>
+      <td></td>
+      <td><%= orders.sum(&:quantity) %></td>
+      <td><%= add_currency_symbol orders.sum(&:total_price) %></td>
+    </tr>
+  </tfoot>
 </table>

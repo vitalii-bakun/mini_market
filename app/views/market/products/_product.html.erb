@@ -15,7 +15,7 @@
     <% end %>
     <p class="card-text"><%= product.description %></p>
 
-    <%= content_tag :p, number_to_currency_uah(product.price), class: "border-primary card" %>
+    <%= content_tag :p, add_currency_symbol(product.price), class: "border-primary card" %>
 
     <%= form_with url: product_cart_add_path(product) do |f| %>
       <%= f.hidden_field 'quantity', value: 1 %>

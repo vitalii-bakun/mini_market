@@ -20,9 +20,9 @@
     <% @customer.orders.each do |order| %>
       <tr>
         <th><%= order.product.title %></th>
-        <td><%= number_to_currency_uah order.product.price %></td>
+        <td><%= add_currency_symbol order.current_price %></td>
         <td><%= order.quantity %></td>
-        <td><%= number_to_currency_uah order.total_price %></td>
+        <td><%= add_currency_symbol order.total_price %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,7 +31,7 @@
       <th scope="row"></th>
       <td></td>
       <td><%= @customer.orders_total_quantity %></td>
-      <td><%= number_to_currency_uah(@customer.orders_total_price) %></td>
+      <td><%= add_currency_symbol(@customer.orders_total_price) %></td>
       <td></td>
     </tr>
   </tfoot>

@@ -29,7 +29,8 @@ class Customer < ApplicationRecord
     Product.where(id: session_products.keys).each do |product|
       Order.create(product:,
                    customer: self,
-                   quantity: session_products[product.id.to_s])
+                   quantity: session_products[product.id.to_s],
+                   current_price: product.price)
     end
 
     # Clear hash of the session

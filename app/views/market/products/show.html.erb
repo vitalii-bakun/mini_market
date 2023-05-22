@@ -18,7 +18,7 @@
           <div class="container text-center">
             <div class="row">
               <div class="col">
-                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= number_to_currency_uah(@product.price) %></span>
+                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= add_currency_symbol(@product.price) %></span>
               </div>
               <div class="col">
                 <%= form_with url: product_cart_add_path(@product), class: "container text-center" do |f| %>
