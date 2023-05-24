@@ -38,9 +38,6 @@ en:
         error: "Product could not be added to cart"
       destroy:
         success: 'Product removed from cart'
-      update:
-        success: 'Product quantity updated'
-        error: 'Product quantity could not be updated'
       destroy_all: 
         success: 'All products removed from cart'
       index:

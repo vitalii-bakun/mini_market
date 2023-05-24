@@ -1,19 +1,19 @@
 module Market
   class SessionCartController < BaseController
+    before_action :create_cart, only: %i[add]
+
     def index
       @carts = Cart.take_all(session_products)
     end
 
     def add
-      cart = Cart.create(cart_params)
-
-      redirect_to root_path, cart.save(session_products) ? { notice: t('.success') } : { alert: t('.error') }
-    end
-
-    def update
-      cart = Cart.create(cart_params)
-
-      redirect_to cart_path, cart.update(session_products) ? { notice: t('.success') } : { alert: t('.error') }
+      if @cart.save(session_products)
+        render json: { message: t('.success'), quantity: Cart.total_quantity(session_products), type: 'success' },
+               status: :created
+      else
+        render json: { message: t('.error'), type: 'danger' },
+               status: :unprocessable_entity
+      end
     end
 
     def destroy
@@ -27,6 +27,10 @@ module Market
     end
 
     private
+
+    def create_cart
+      @cart = Cart.create(cart_params)
+    end
 
     def cart_params
       params.permit(:product_id, :quantity)

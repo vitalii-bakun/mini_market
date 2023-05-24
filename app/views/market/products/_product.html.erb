@@ -17,9 +17,9 @@
 
     <%= content_tag :p, add_currency_symbol(product.price), class: "border-primary card" %>
 
-    <%= form_with url: product_cart_add_path(product) do |f| %>
+    <%= form_with url: product_cart_add_path(product), html: { onsubmit: 'return false;', id: "addToCart-#{product.id}" } do |f| %>
       <%= f.hidden_field 'quantity', value: 1 %>
-      <%= f.submit t('market.products.product.add_to_cart'), class: "btn btn-primary card-text" %>
+      <%= f.submit t('market.products.product.add_to_cart'), class: "btn btn-primary card-text", onclick: "addToCart('addToCart-#{product.id}')" %>
     <% end %>
   </div>
 </div>

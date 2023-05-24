@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :products, only: %i[index show] do
       delete 'cart/destroy', to: 'session_cart#destroy', as: 'cart_destroy'
       post 'cart/add', to: 'session_cart#add', as: 'cart_add'
-      match 'cart/update', to: 'session_cart#update', as: 'cart_update', via: %i[put patch]
     end
 
     resources :customers, only: %i[new create show]

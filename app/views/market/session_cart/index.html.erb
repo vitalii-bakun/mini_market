@@ -18,10 +18,10 @@
           <%= add_currency_symbol(cart.product.price) %>
         </td>
         <td>
-          <%= form_with url: product_cart_update_path(cart.product), method: :patch, class: "container text-center" do |f| %>
+          <%= form_with url: product_cart_add_path(cart.product), method: :post, html: { onsubmit: 'return false;', id: "addToCart-#{cart.product.id}", class: "container text-center" } do |f| %>
             <div class="row">
               <%= f.number_field 'quantity', value: cart.quantity, min: "1", max: true, class: 'form-control col' %>
-              <%= f.submit t('.link.update'), class: "btn btn-primary col", style: "margin: 0 0 0 10px" %>
+              <%= f.submit t('.link.update'), class: "btn btn-primary col", style: "margin: 0 0 0 10px", onclick: "addToCart('addToCart-#{cart.product.id}')" %>
             </div>
           <% end %>
         </td>

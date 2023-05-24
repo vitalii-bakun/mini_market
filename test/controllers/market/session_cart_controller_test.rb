@@ -13,12 +13,7 @@ module Market
 
     test "should add product in cart" do
       post product_cart_add_url(@product), params: { quantity: 1 }
-      assert_redirected_to root_url
-    end
-
-    test "should update quantity of product in cart" do
-      patch product_cart_update_url(@product), params: { quantity: 2 }
-      assert_redirected_to cart_url
+      assert_response :created
     end
 
     test "should removes product from cart" do
