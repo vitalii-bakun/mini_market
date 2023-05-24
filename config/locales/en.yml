@@ -57,7 +57,7 @@ en:
           make: 'Make a new order'
     products:
       product: 
-        no_img: 'No Image'
+        no_image: 'No Image'
         add_to_cart: 'Add to cart'
       show:
         price: 'Price'

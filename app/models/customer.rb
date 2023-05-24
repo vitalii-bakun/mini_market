@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   enum payment_method: %i[cash card service]
   enum status: %i[new_order send_order done_order canceled_order]
 
-  has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :nullify
   has_many :products, through: :orders
 
   def orders_total_price

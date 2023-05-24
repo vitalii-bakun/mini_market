@@ -38,7 +38,7 @@ end
                   user: User.all.sample)
 
   if Faker::Boolean.boolean
-    p.presentation.attach(io: File.open('./tmp/storage/Original.png'),
+    p.presentation.attach(io: File.open('./public/apple-touch-icon.png'),
                           filename: Faker::File.file_name(directory_separator: '', ext: 'png'),
                           content_type: 'image/png')
   end
@@ -47,17 +47,17 @@ end
 end
 
 # Create orders
-5.times do
-  # take random entities
-  customer = Customer.all.sample
-
+Customer.all.each do |customer|
   # add products in order
-  rand(1..10).times do
-    quantity = rand(1..100)
+  random_count_orders = rand((1..10))
+  
+  random_count_orders.times do
+    quantity = rand((1..100))
     product = Product.all.sample
-
+  
     Order.create(customer:,
                  product:,
-                 quantity:)
+                 quantity:,
+                 current_price: product.price)
   end
 end

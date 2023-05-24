@@ -1,11 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+apple:
+  title: "Apple"
+  description: "This is a product 1"
+  price: 100
+  body: "This is a product 1"
+  available: true
+  user: admin
 
-one:
-  title: MyString
-  price: 9.99
-  body: MyText
-
-two:
-  title: MyString
-  price: 9.99
-  body: MyText
+orange:
+  title: "Orange"
+  description: "This is a product 2"
+  price: 200
+  body: "This is a product 2"
+  available: false
+  user: manager

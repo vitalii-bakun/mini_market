@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :available, inclusion: { in: [true, false] }
 
-  has_many :orders
+  has_many :orders, dependent: :nullify
   has_many :customers, through: :orders
 
   belongs_to :user

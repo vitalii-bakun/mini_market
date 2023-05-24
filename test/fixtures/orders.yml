@@ -1,0 +1,17 @@
+one:
+  customer: john
+  product: apple
+  quantity: 1
+  current_price: 100
+
+two:
+  customer: nick
+  product: apple
+  quantity: 3
+  current_price: 100
+
+three:
+  customer: nick
+  product: orange
+  quantity: 1
+  current_price: 200

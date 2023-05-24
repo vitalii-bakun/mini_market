@@ -1,13 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  address: MyString
-  phone: MyString
-  comment: MyText
+john:
+  first_name: John
+  address: 'Street 1'
+  phone: '+380123456789'
+  uuid: <%= SecureRandom.uuid %>
+  discount: 'MyDiscount'
+  comment: "MyComment"
+  dont_call: true
+  payment_method: online
+  status: new_order
 
-two:
-  name: MyString
-  address: MyString
-  phone: MyString
-  comment: MyText
+nick:
+  first_name: Nick
+  address: 'Street 2'
+  phone: '+380123456786'
+  uuid: <%= SecureRandom.uuid %>
+  discount: 'MyDiscount'
+  comment: "MyComment"
+  dont_call: false
+  payment_method: cash
+  status: new_order
