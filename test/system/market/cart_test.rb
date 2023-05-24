@@ -9,7 +9,7 @@ module Market
     test "add product to cart in root page" do
       add_product_to_cart
 
-      assert_text "1"
+      assert_selector :xpath, "/html/body/div/table/tfoot/tr/td[2]", text: "1"
     end
 
     test "add product to cart with quantity" do
@@ -22,7 +22,7 @@ module Market
 
       visit cart_url
 
-      assert_text "2"
+      assert_selector :xpath, "/html/body/div/table/tfoot/tr/td[2]", text: "2"
     end
 
     test "remove product from cart" do
