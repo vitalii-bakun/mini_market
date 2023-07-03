@@ -1,5 +1,5 @@
 module Panel
-  class ProductsController < ResourceController
+  class ProductsController < BaseController
     before_action :set_product, only: %i[show edit update destroy]
 
     def index

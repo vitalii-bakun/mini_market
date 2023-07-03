@@ -1,0 +1,8 @@
+<% if can? :create, User %>
+  <%= link_to t('.link.new_user'), new_panel_user_path, class: 'btn btn-primary' %>
+<% end %>
+<div class="container text-center">
+  <div class="row row-cols-auto">
+    <%= render 'table', users: @users  %>
+  </div>
+</div>

@@ -1,14 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 john:
   first_name: John
   address: 'Street 1'
   phone: '+380123456789'
   uuid: <%= SecureRandom.uuid %>
-  discount: 'MyDiscount'
   comment: "MyComment"
   dont_call: true
-  payment_method: online
+  payment_method: service
   status: new_order
 
 nick:
@@ -16,7 +13,6 @@ nick:
   address: 'Street 2'
   phone: '+380123456786'
   uuid: <%= SecureRandom.uuid %>
-  discount: 'MyDiscount'
   comment: "MyComment"
   dont_call: false
   payment_method: cash

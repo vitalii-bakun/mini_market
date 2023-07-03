@@ -9,8 +9,8 @@ module Market
     def show
       @customer = Customer.find_by_uuid!(params[:id])
 
-      # generating HTML payment form if the customer has chosen the service
-      call_service(@customer) if @customer.service?
+      # Generating HTML payment form if the customer has chosen the service
+      call_liqpay if @customer.service?
     end
 
     def create
@@ -28,11 +28,15 @@ module Market
 
     private
 
-    def call_service(customer)
-      @html_form_pay = LiqpayService.call(amount: customer.orders_total_price,
-                                          description: 'Thank you for your order',
-                                          order_id: customer.uuid,
-                                          result_url: customer_url(id: customer.uuid))
+    def call_liqpay
+      @html_form_pay = LiqpayService.generate_form(amount: @customer.orders_total_price,
+                                                   description: @customer.orders.map do |o|
+                                                                  "#{o.product.title} : #{o.quantity}"
+                                                                end.join(', '),
+                                                   order_id: @customer.uuid,
+                                                   result_url: customer_url(id: @customer.uuid))
+
+      @success = LiqpayService.order_status(@customer.uuid)['status'] == 'success'
     end
 
     def cart_has_not_products
@@ -41,7 +45,7 @@ module Market
 
     def customer_params
       params.require(:customer)
-            .permit(:first_name, :address, :phone, :comment, :discount, :dont_call, :payment_method)
+            .permit(:first_name, :address, :phone, :comment, :dont_call, :payment_method)
     end
   end
 end

@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   currency_symbol: '$'
   market:
@@ -89,7 +58,6 @@ en:
           address: 'Address (Necessarily)'
           phone: 'Phone (Necessarily)'
           comment: 'Comment (Not Necessarily)'
-          discount: 'Discount (If you have one)'
           dont_call: "Don't call me"
           pay:
             cash: 'Pay cash'
@@ -100,6 +68,9 @@ en:
     dashboard: 
       index: 
         title: 'Dashboard'
+        link:
+          new: 'New'
+          all: 'Look all'
         sign:
           in: 'Sign in'
           out: 'Sign out'
@@ -107,9 +78,8 @@ en:
           title: 'Status order'
         products: 
           title: 'Products'
-          link:
-            new_product: 'New product'
-            look_all: 'Look all'
+        users: 
+          title: 'Users'
             
     customers:
       form:
@@ -117,7 +87,6 @@ en:
         address: 'Address'
         phone: 'Phone'
         uuid: 'UUID'
-        discount: 'Discount'
         comment: 'Comment'
         dont_call: "Don't call me"
         pay:
@@ -135,7 +104,6 @@ en:
         first_name: 'First name'
         address: 'Address'
         phone: 'Phone'
-        discount: 'Discount'
         comment: 'Comment'
         dont_call: "Don't call me"
         payment_method: 'Payment method'
@@ -197,6 +165,38 @@ en:
         price: 'Price per unit'
         quantity: 'Quantity'
         total: 'Total price'
+    users:
+      form:
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        role: 'Role'
+        submit: 'Send'
+      table:
+        email: 'Email'
+        role: 'Role'
+        control:
+          name: 'Control'
+          show: 'Show'
+          edit: 'Edit'
+          delete: 'Delete'
+      edit:
+        title: "Edit user"
+        link:
+          back: 'Back to users'
+          show: 'Show this user'
+      index:
+        link:
+          new_user: 'New user'
+      new:
+        link:
+          back: 'Back to users'
+      show:
+        link:
+          back: 'Back to users'
+          edit: 'Edit this user'
+          delete: 'Destroy this user'
+        
   layout:
     footer:
       about:

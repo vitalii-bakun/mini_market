@@ -47,7 +47,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_155648) do
     t.string "address", limit: 300, null: false
     t.string "phone", null: false
     t.string "uuid", limit: 36, null: false
-    t.string "discount", limit: 100
     t.text "comment"
     t.boolean "dont_call", default: false
     t.integer "payment_method", default: 0

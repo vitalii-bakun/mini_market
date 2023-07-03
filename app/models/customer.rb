@@ -7,11 +7,10 @@ class Customer < ApplicationRecord
   validates :address, presence: true, length: { maximum: 300 }
   validates :phone, presence: true, format: { with: /\+?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/ }
   validates :uuid, uniqueness: true
-  validates :discount, length: { maximum: 100 }
   validates :comment, length: { maximum: 300 }
   validates :dont_call, inclusion: { in: [true, false] }
 
-  enum payment_method: %i[cash card service]
+  enum payment_method: %i[cash service]
   enum status: %i[new_order send_order done_order canceled_order]
 
   has_many :orders, dependent: :nullify
@@ -37,11 +36,13 @@ class Customer < ApplicationRecord
     session_products.clear
   end
 
-  def self.payment_methods_keys_with_translate_text
-    Customer.payment_methods.keys.map { |key| [I18n.t("panel.customers.form.pay.#{key}"), key] }
-  end
+  class << self
+    def payment_methods_keys_with_translate_text
+      payment_methods.keys.map { |key| [I18n.t("panel.customers.form.pay.#{key}"), key] }
+    end
 
-  def self.statuses_keys_with_translate_text
-    Customer.statuses.keys.map { |key| [I18n.t("panel.customers.form.status.#{key}"), key] }
+    def statuses_keys_with_translate_text
+      statuses.keys.map { |key| [I18n.t("panel.customers.form.status.#{key}"), key] }
+    end
   end
 end

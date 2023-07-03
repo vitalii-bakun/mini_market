@@ -44,7 +44,6 @@ module Market
       fill_in "customer[address]", with: "Street 1"
       fill_in "customer[phone]", with: "+123456789023"
       fill_in 'customer[comment]', with: 'Comment first'
-      fill_in "customer[discount]", with: "Discount"
       check "customer[dont_call]", match: :first
       choose 'customer_payment_method_card'
       click_button 'Confirm', match: :first

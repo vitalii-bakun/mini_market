@@ -14,14 +14,15 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path: 'panel'
+
   namespace :panel do
-    get '/', to: 'dashboard#index', as: 'dashboard'
+    resources :users
     resources :products
+    get '/', to: 'dashboard#index', as: 'dashboard'
     get 'customers/:status', to: 'customers#status', as: 'customers_status',
                              constraints: { status: /(new|send|done|canceled)_order/ }
     resources :customers, only: %i[edit update destroy] do
-      get 'orders', to: 'orders#index', as: 'orders'
-      match 'status', to: 'customers#status_update', as: 'status_update', via: %i[put patch]
+      get 'orders', to: 'customers#orders', as: 'orders'
     end
   end
 end

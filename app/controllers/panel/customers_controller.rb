@@ -1,19 +1,13 @@
 module Panel
-  class CustomersController < ResourceController
+  class CustomersController < BaseController
     before_action :set_customer, only: %i[edit update destroy]
-    before_action :set_customer_by_customer_id, only: %i[status_update]
+
+    def orders
+      @orders = Customer.find(params[:customer_id]).orders.includes(:product)
+    end
 
     def status
       @customers = Customer.where(status: params[:status])
-    end
-
-    def status_update
-      if @customer.update(status_params)
-        redirect_to panel_customers_status_path(status: @customer.status),
-                    notice: t('.success')
-      else
-        redirect_to edit_panel_customer_path, alert: @customer.errors.full_messages
-      end
     end
 
     def edit; end
@@ -29,28 +23,18 @@ module Panel
 
     def destroy
       @customer.destroy
-      redirect_to panel_dashboard_path,
-                  notice: t('.success')
+      redirect_to panel_dashboard_path, notice: t('.success')
     end
 
     private
 
     def customer_params
       params.require(:customer).permit(:first_name, :address, :phone, :uuid,
-                                       :discount, :comment, :dont_call,
-                                       :payment_method, :status)
-    end
-
-    def status_params
-      params.require(:customer).permit(:status)
+                                       :comment, :dont_call, :payment_method, :status)
     end
 
     def set_customer
       @customer = Customer.find(params[:id])
-    end
-
-    def set_customer_by_customer_id
-      @customer = Customer.find(params[:customer_id])
     end
   end
 end

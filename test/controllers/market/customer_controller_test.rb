@@ -1,6 +1,5 @@
 require "test_helper"
 
-
 module Market
   class CustomerControllerTest < ActionDispatch::IntegrationTest
     def setup
@@ -19,12 +18,16 @@ module Market
 
     test "should create a customer" do
       assert_difference("Customer.count") do
-        post customers_url, params: { customer: {
-          first_name: "John", address: "Street 1",
-          phone: "+380456789033", comment: "",
-          discount: "", dont_call: false,
-          payment_method: "cash"
-        } }
+        post customers_url, params: {
+          customer: {
+            first_name: "John",
+            address: "Street 1",
+            phone: "+380456789033",
+            comment: "",
+            dont_call: false,
+            payment_method: "cash"
+          }
+        }
       end
     end
   end

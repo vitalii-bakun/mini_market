@@ -6,20 +6,22 @@ class Cart
   validates :product, presence: true
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  def self.take_all(session_products)
-    Product.where(id: session_products.keys)
-           .map do |product|
-      new(product:,
-          quantity: session_products[product.id.to_s].to_i)
+  class << self
+    def take_all(session_products)
+      Product.where(id: session_products.keys)
+             .map do |product|
+        new(product:,
+            quantity: session_products[product.id.to_s].to_i)
+      end
     end
-  end
 
-  def self.total_quantity(session_products)
-    session_products.values.sum
-  end
+    def total_quantity(session_products)
+      session_products.values.sum
+    end
 
-  def self.create(session_products)
-    new(product: Product.find(session_products[:product_id]), quantity: session_products[:quantity].to_i)
+    def create(session_products)
+      new(product: Product.find(session_products[:product_id]), quantity: session_products[:quantity].to_i)
+    end
   end
 
   def save(session_products)

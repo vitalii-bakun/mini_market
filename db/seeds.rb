@@ -9,19 +9,18 @@
 require 'faker'
 require 'securerandom'
 
-# Create admin
-User.create(email: 'admin@admin.com', password: 'password')
-# Create manager
-User.create(email: 'manager@manager.com', password: 'password', role: User.roles[:manager])
+# Create users
+%w[user manager admin].each do |role|
+  User.create(email: "#{role}@#{role}.com", password: 'password', role:)
+end
 
 # Create customers
 20.times do
-  payment_method = %i[card service cash].sample
+  payment_method = %i[service cash].sample
   status = %i[new_order send_order done_order canceled_order].sample
   Customer.create(first_name: Faker::Name.name,
                   address: Faker::Address.full_address,
                   phone: Faker::PhoneNumber.phone_number_with_country_code,
-                  discount: SecureRandom.base36(16),
                   dont_call: Faker::Boolean.boolean,
                   payment_method:,
                   status:,
@@ -50,11 +49,11 @@ end
 Customer.all.each do |customer|
   # add products in order
   random_count_orders = rand((1..10))
-  
+
   random_count_orders.times do
     quantity = rand((1..100))
     product = Product.all.sample
-  
+
     Order.create(customer:,
                  product:,
                  quantity:,

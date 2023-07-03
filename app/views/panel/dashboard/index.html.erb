@@ -16,8 +16,16 @@
 <hr>
 <h2><%= t('.products.title') %></h2>
 <% if can? :read, Product %>
-  <%= link_to t('.products.look_all'), panel_products_path, class: 'btn btn-primary' %>
+  <%= link_to t('.link.all'), panel_products_path, class: 'btn btn-primary' %>
 <% end %>
 <% if can? :new, Product %>
-  <%= link_to t('.products.new_product'), new_panel_product_path, class: 'btn btn-primary' %>
+  <%= link_to t('.link.new'), new_panel_product_path, class: 'btn btn-primary' %>
+<% end %>
+<hr>
+<h2><%= t('.users.title') %></h2>
+<% if can? :read, User %>
+  <%= link_to t('.link.all'), panel_users_path, class: 'btn btn-primary' %>
+<% end %>
+<% if can? :new, User %>
+  <%= link_to t('.link.new'), new_panel_user_path, class: 'btn btn-primary' %>
 <% end %>
