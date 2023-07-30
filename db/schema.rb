@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_101843) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_182027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,17 +55,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_101843) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "market_user_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["market_user_id"], name: "index_carts_on_market_user_id"
+    t.index ["product_id"], name: "index_carts_on_product_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "first_name", limit: 100, null: false
     t.string "address", limit: 300, null: false
-    t.string "phone", null: false
+    t.string "phone", limit: 100, null: false
     t.string "uuid", limit: 36, null: false
     t.text "comment"
     t.boolean "dont_call", default: false
     t.integer "payment_method", default: 0
     t.integer "status", default: 0
+    t.boolean "payment_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "market_user_id"
+    t.index ["market_user_id"], name: "index_customers_on_market_user_id"
     t.index ["uuid"], name: "index_customers_on_uuid"
   end
 
@@ -77,6 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_101843) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name", limit: 100, null: false
+    t.string "address", limit: 300, null: false
+    t.string "phone", limit: 100, null: false
     t.index ["email"], name: "index_market_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_market_users_on_reset_password_token", unique: true
   end

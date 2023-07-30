@@ -14,12 +14,13 @@ Rails.application.routes.draw do
 
   # Market
   scope module: 'market' do
-    get 'cart', to: 'session_cart#index', as: 'cart'
-    delete 'cart/destroy_all', to: 'session_cart#destroy_all', as: 'cart_destroy_all'
+    get 'cart', to: 'carts#index', as: 'cart'
+    delete 'cart/destroy_all', to: 'carts#destroy_all', as: 'cart_destroy_all'
 
     resources :products, only: %i[index show] do
-      delete 'cart/destroy', to: 'session_cart#destroy', as: 'cart_destroy'
-      post 'cart/add', to: 'session_cart#add', as: 'cart_add'
+      delete 'cart/destroy', to: 'carts#destroy', as: 'cart_destroy'
+      post 'cart/create', to: 'carts#create', as: 'cart_create'
+      post 'cart/update', to: 'carts#update', as: 'cart_update'
     end
 
     resources :customers, only: %i[new create show]

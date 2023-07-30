@@ -11,4 +11,6 @@ class Product < ApplicationRecord
   has_many :customers, through: :orders
 
   belongs_to :admin_user
+
+  has_many :carts
 end

@@ -15,14 +15,14 @@
           <%= link_to t('layout.footer.link.home'), root_path, class: "nav-link" %>
           <%= link_to "+38 (098) 00-00-000", "tel:+380989898342", class: "nav-link" %>
         </div>
-        <%= link_to cart_path, class: "navbar-text btn btn-outline-success position-relative" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-          </svg>
-          <%= t('layout.footer.link.cart') %>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartQuantity">
-            <%= Cart.total_quantity(session[:products] ||= {}) %>
-          </span>
+        <% if market_user_signed_in? %>
+          <div id="cart-info">
+            <%= render partial: 'market/carts/add' %>
+          </div>
+          <%= button_to 'Sign Out', destroy_market_user_session_path, class: 'btn btn-danger navbar-text', method: :delete, style: 'margin-left: 10px; color:white;' %>
+        <% else %>
+          <%= link_to 'Sign In', new_market_user_session_path, class: 'btn btn-primary navbar-text', style: 'margin-right: 5px; color: white;' %>
+          <%= link_to 'Sign Up', new_market_user_registration_path, class: 'btn btn-success navbar-text', style: 'color: white;' %>
         <% end %>
       </div>
     </div>

@@ -1,0 +1,4 @@
+<div id="cart-table">
+  <%= render partial: 'table', locals: { carts: @carts } %>
+</div>
+<%= link_to t('.make'), new_customer_path, class: 'btn btn-primary' %>

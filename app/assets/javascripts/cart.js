@@ -1,41 +1,54 @@
-const cartQuantity = document.getElementById('cartQuantity')
+const cartInfo = document.getElementById('cart-info')
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
 
-function addToCart(id) {
-    const cart_form = document.getElementById(id);
+function addToCart(product_form_id) {
+    const cartForm = document.getElementById(product_form_id);
 
-    fetch(cart_form.action, {
+    fetch(cartForm.action, {
         method: 'POST',
-        body: new FormData(cart_form),
+        body: new FormData(cartForm),
     }).then(response => {
-        let json = response.json()
-        if (response.status === 201) {
-            json.then(data => {
-                console.info('add to cart');
-                createMessage(data)
-
-                cartQuantity.innerText = data.quantity
-            });
+        if (response.ok) {
+            response.text().then(text => {
+                cartInfo.innerHTML = text
+            })
         } else {
-            json.then(data => {
-                createMessage(data)
-            });
+            alertPlaceholder.innerText = 'Something went wrong'
         }
     })
 }
 
-function createMessage(data) {
-    alertPlaceholder.innerHTML = ''
+function updateQuantityCartTable(form_id) {
+    const cartTable = document.getElementById('cart-table');
+    const cartTableForm = document.getElementById(form_id);
 
-    const wrapper = document.createElement('div')
+    fetch(cartTableForm.action, {
+        method: 'POST',
+        body: new FormData(cartTableForm),
+    }).then(response => {
+        if (response.ok) {
+            response.text().then(text => {
+                cartTable.innerHTML = text
+            })
+        } else {
+            alertPlaceholder.innerText = 'Something went wrong'
+        }
+    })
+}
 
-    wrapper.innerHTML = [
-        `<div class="alert alert-${data.type} alert-dismissible" role="alert">`,
-        `   <div>${data.message}</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        '</div>'
-    ].join('')
+function removeProductFromCart(path) {
+    const cartTable = document.getElementById('cart-table')
 
-    alertPlaceholder.append(wrapper)
+    fetch(path, {
+        method: 'DELETE',
+    }).then(response => {
+        if (response.ok) {
+            response.text().then(text => {
+                cartTable.innerHTML = text
+            })
+        } else {
+            alertPlaceholder.innerText = 'Something went wrong'
+        }
+    })
 }

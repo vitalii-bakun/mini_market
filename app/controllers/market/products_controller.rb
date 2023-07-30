@@ -1,5 +1,6 @@
 module Market
   class ProductsController < BaseController
+    skip_before_action :authenticate_market_user!
     before_action :set_product, only: %i[show]
 
     def index

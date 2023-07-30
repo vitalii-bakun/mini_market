@@ -1,0 +1,46 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('market.carts.table.name') %></th>
+      <th scope="col"><%= t('market.carts.table.price') %></th>
+      <th scope="col"><%= t('market.carts.table.quantity') %></th>
+      <th scope="col"><%= t('market.carts.table.total') %></th>
+      <th scope="col"><%= t('market.carts.table.remove') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% carts.each do |cart| %>
+      <tr id="<%= cart.product.id %>">
+        <th scope="row">
+          <%= link_to cart.product.title, product_path(cart.product) %>
+        </th>
+        <td>
+          <%= currency_with_symbol(cart.product.price) %>
+        </td>
+        <td>
+          <%= form_with url: product_cart_update_path(cart.product), method: :post, html: { onsubmit: 'return false;', id: "updateCartTable-#{cart.product.id}", class: "container text-center" } do |f| %>
+            <div class="row">
+              <%= f.number_field 'quantity', value: cart.quantity, min: "1", max: true, class: 'form-control col' %>
+              <%= f.submit t('market.carts.table.update'), class: "btn btn-primary col", style: "margin: 0 0 0 10px", onclick: "updateQuantityCartTable('updateCartTable-#{cart.product.id}')" %>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <%= currency_with_symbol(cart.total_price) %>
+        </td>
+        <td>
+          <%= link_to t('market.carts.table.remove'),'#', onclick:"removeProductFromCart(\"#{product_cart_destroy_path(cart.product)}\");", class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td><%= carts.sum(&:quantity) %></td>
+      <td><%= currency_with_symbol(carts.sum(&:total_price)) %></td>
+      <td><%= link_to t('market.carts.table.remove_all'), '#', class: "btn btn-danger", onclick: "removeProductFromCart(\"#{cart_destroy_all_path}\");" %></td>
+    </tr>
+  </tfoot>
+</table>

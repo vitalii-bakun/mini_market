@@ -3,18 +3,20 @@ class Customer < ApplicationRecord
     self.uuid = SecureRandom.uuid
   end
 
+  belongs_to :market_user
+  has_many :orders, dependent: :nullify
+  has_many :products, through: :orders
+
   validates :first_name, presence: true, length: { maximum: 100 }
   validates :address, presence: true, length: { maximum: 300 }
   validates :phone, presence: true, format: { with: /\+?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/ }
   validates :uuid, uniqueness: true
   validates :comment, length: { maximum: 300 }
   validates :dont_call, inclusion: { in: [true, false] }
+  validates :payment_status, inclusion: { in: [true, false] }
 
   enum payment_method: %i[cash service]
   enum status: %i[new_order send_order done_order canceled_order]
-
-  has_many :orders, dependent: :nullify
-  has_many :products, through: :orders
 
   def orders_total_price
     orders.sum(&:total_price)
@@ -24,16 +26,16 @@ class Customer < ApplicationRecord
     orders.sum(&:quantity)
   end
 
-  def create_orders(session_products)
-    Product.where(id: session_products.keys).each do |product|
-      Order.create(product:,
-                   customer: self,
-                   quantity: session_products[product.id.to_s],
-                   current_price: product.price)
+  def create_orders_and_destroy_all_from_carts
+    market_user.carts.each do |cart|
+      orders.create(
+        product: cart.product,
+        quantity: cart.quantity,
+        current_price: cart.product.price
+      )
     end
 
-    # Clear hash of the session
-    session_products.clear
+    market_user.carts.destroy_all
   end
 
   class << self

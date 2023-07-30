@@ -1,7 +1,7 @@
 require "test_helper"
 
 module Market
-  class SessionCartControllerTest < ActionDispatch::IntegrationTest
+  class CartsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @product = products(:apple)
     end

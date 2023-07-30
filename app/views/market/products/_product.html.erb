@@ -14,12 +14,10 @@
       </h5>
     <% end %>
     <p class="card-text"><%= product.description %></p>
-
-    <%= content_tag :p, add_currency_symbol(product.price), class: "border-primary card" %>
-
-    <%= form_with url: product_cart_add_path(product), html: { onsubmit: 'return false;', id: "addToCart-#{product.id}" } do |f| %>
+    <%= content_tag :p, currency_with_symbol(product.price), class: "border-primary card" %>
+    <%= form_with url: product_cart_create_path(product), html: { onsubmit: 'return false;', id: "add-product-#{product.id}-to-cart" } do |f| %>
       <%= f.hidden_field 'quantity', value: 1 %>
-      <%= f.submit t('market.products.product.add_to_cart'), class: "btn btn-primary card-text", onclick: "addToCart('addToCart-#{product.id}')" %>
+      <%= f.submit t('market.products.product.add_to_cart'), class: "btn btn-primary card-text", onclick: "addToCart('add-product-#{product.id}-to-cart')" %>
     <% end %>
   </div>
 </div>

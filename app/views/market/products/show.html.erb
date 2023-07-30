@@ -18,10 +18,10 @@
           <div class="container text-center">
             <div class="row">
               <div class="col">
-                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= add_currency_symbol(@product.price) %></span>
+                <span class="badge text-bg-success" style="font-size:20px; margin: 5px">Price: <%= currency_with_symbol(@product.price) %></span>
               </div>
               <div class="col">
-                <%= form_with url: product_cart_add_path(@product), html: { onsubmit: 'return false;', id: "addToCart-#{@product.id}", class: "container text-center" } do |f| %>
+                <%= form_with url: product_cart_create_path(@product), html: { onsubmit: 'return false;', id: "addToCart-#{@product.id}", class: "container text-center" } do |f| %>
                   <div class="row">
                     <%= f.number_field 'quantity', value: 1, min: "1", max: true, class: 'form-control col' %>
                     <%= f.submit "Buy", class: "btn btn-primary col", style: "margin: 0 0 0 10px", onclick: "addToCart('addToCart-#{@product.id}')" %>

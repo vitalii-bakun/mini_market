@@ -9,12 +9,21 @@
 require 'faker'
 require 'securerandom'
 
-# Create users
+puts 'Create admin users'
 %w[manager admin].each do |role|
   AdminUser.create(email: "#{role}@#{role}.com", password: 'password', role:)
 end
 
-# Create customers
+puts 'Create market users'
+%w[user simple_user].each do |name|
+  MarketUser.create(email: "#{name}@#{name}.com",
+                    password: 'password',
+                    first_name: Faker::Name.first_name,
+                    address: Faker::Address.full_address,
+                    phone: Faker::PhoneNumber.phone_number_with_country_code)
+end
+
+puts 'Create customers'
 20.times do
   payment_method = %i[service cash].sample
   status = %i[new_order send_order done_order canceled_order].sample
@@ -24,10 +33,11 @@ end
                   dont_call: Faker::Boolean.boolean,
                   payment_method:,
                   status:,
-                  comment: Faker::Lorem.paragraph)
+                  comment: Faker::Lorem.paragraph,
+                  market_user: MarketUser.all.sample)
 end
 
-# Create products
+puts 'Create products'
 20.times do
   p = Product.new(title: Faker::Commerce.product_name,
                   price: Faker::Commerce.price,
@@ -45,7 +55,7 @@ end
   p.save
 end
 
-# Create orders
+puts 'Create orders'
 Customer.all.each do |customer|
   # add products in order
   random_count_orders = rand((1..10))
@@ -59,4 +69,9 @@ Customer.all.each do |customer|
                  quantity:,
                  current_price: product.price)
   end
+end
+
+puts 'Create carts'
+10.times do
+  Cart.create(market_user: MarketUser.all.sample, product: Product.all.sample, quantity: rand(1..10))
 end

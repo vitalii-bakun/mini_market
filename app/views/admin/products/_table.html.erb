@@ -14,7 +14,7 @@
       <tr>
         <th scope="row"><%= product.id %></th>
         <td><%= link_to product.title, admin_product_path(product) %></td>
-        <td><%= add_currency_symbol(product.price) %></td>
+        <td><%= currency_with_symbol(product.price) %></td>
         <td><%= product.available %></td>
         <td><%= product.description %></td>
         <td>

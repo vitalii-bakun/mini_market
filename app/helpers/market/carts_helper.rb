@@ -1,6 +1,6 @@
 module Market
-  module SessionCartHelper
-    def add_currency_symbol(value)
+  module CartsHelper
+    def currency_with_symbol(value)
       number_to_currency(value, precision: 2, unit: I18n.t('currency_symbol'))
     end
   end

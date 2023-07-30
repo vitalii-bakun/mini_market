@@ -1,8 +1,8 @@
 en:
   currency_symbol: '$'
   market:
-    session_cart:
-      add:
+    carts:
+      create:
         success: 'Product added to cart'
         error: "Product could not be added to cart"
       destroy:
@@ -10,17 +10,16 @@ en:
       destroy_all: 
         success: 'All products removed from cart'
       index:
-        table:
-          name: 'Product name'
-          price: 'Price'
-          quantity: 'Quantity'
-          total: 'Total'
-          remove: 'Remove'
-        link: 
-          update: 'Update'
-          remove: 'Remove'
-          remove_all: 'Remove all'
-          make: 'Make a new order'
+        make: 'Make a new order'
+      table:
+        name: 'Product name'
+        price: 'Price'
+        quantity: 'Quantity'
+        total: 'Total'
+        remove: 'Remove'
+        update: 'Update'
+        remove: 'Remove'
+        remove_all: 'Remove all'
     products:
       product: 
         no_image: 'No Image'
@@ -79,7 +78,7 @@ en:
         products: 
           title: 'Products'
         users: 
-          title: 'AdminUsers'
+          title: 'Users'
             
     customers:
       form:

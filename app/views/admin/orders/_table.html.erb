@@ -10,13 +10,13 @@
   </thead>
   <tbody>
     <% @orders.each do |order| %>
-    <tr>
-      <th scope="row"><%= order.id %></th>
-      <td><%= link_to order.product.title, admin_product_path(order.product) %></td>
-      <td><%= add_currency_symbol order.current_price %></td>
-      <td><%= order.quantity %></td>
-      <td><%= add_currency_symbol order.total_price %></td>
-    </tr>
+      <tr>
+        <th scope="row"><%= order.id %></th>
+        <td><%= link_to order.product.title, admin_product_path(order.product) %></td>
+        <td><%= currency_with_symbol order.current_price %></td>
+        <td><%= order.quantity %></td>
+        <td><%= currency_with_symbol order.total_price %></td>
+      </tr>
     <% end %>
   </tbody>
   <tfoot>
@@ -25,7 +25,7 @@
       <td></td>
       <td></td>
       <td><%= @orders.sum(&:quantity) %></td>
-      <td><%= add_currency_symbol @orders.sum(&:total_price) %></td>
+      <td><%= currency_with_symbol @orders.sum(&:total_price) %></td>
     </tr>
   </tfoot>
 </table>

@@ -1,9 +1,11 @@
 module Market
   class CustomersController < BaseController
-    before_action :cart_has_not_products, only: [:create], if: :session_products_empty?
+    before_action :cart_has_not_products, only: %i[create], if: :user_has_products_in_cart?
 
     def new
-      @customer = Customer.new
+      @customer = Customer.new(address: current_market_user.address,
+                               phone: current_market_user.phone,
+                               first_name: current_market_user.first_name)
     end
 
     def show
@@ -17,8 +19,8 @@ module Market
       customer = Customer.new(customer_params)
 
       if customer.save
-        # Creating an order for each product
-        customer.create_orders(session_products)
+        # Creating orders for the customer
+        customer.create_orders_and_destroy_all_from_carts
 
         redirect_to customer_path(id: customer.uuid), notice: t('.success')
       else
@@ -39,6 +41,10 @@ module Market
       @success = LiqpayService.order_status(@customer.uuid)['status'] == 'success'
     end
 
+    def user_has_products_in_cart?
+      current_market_user.carts.empty?
+    end
+
     def cart_has_not_products
       redirect_to root_path, alert: t('market.customers.cart_empty')
     end
@@ -46,6 +52,7 @@ module Market
     def customer_params
       params.require(:customer)
             .permit(:first_name, :address, :phone, :comment, :dont_call, :payment_method)
+            .merge(market_user: current_market_user)
     end
   end
 end
