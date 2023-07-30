@@ -1,5 +1,6 @@
 module Market
   class SessionCartController < BaseController
+    before_action :authenticate_market_user!
     before_action :create_cart, only: %i[add]
 
     def index

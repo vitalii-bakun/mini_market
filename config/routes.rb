@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
+  # Home page
   root 'market/products#index'
 
+  # Users belong to the Market
+  devise_for :market_users, controllers: {
+    # confirmations: 'market/users/confirmations',
+    # omniauth_callbacks: 'market/users/omniauth_callbacks',
+    passwords: 'market/users/passwords',
+    registrations: 'market/users/registrations',
+    sessions: 'market/users/sessions'
+    # unlocks: 'market/users/unlocks',
+  }
+
+  # Market
   scope module: 'market' do
     get 'cart', to: 'session_cart#index', as: 'cart'
     delete 'cart/destroy_all', to: 'session_cart#destroy_all', as: 'cart_destroy_all'
@@ -13,8 +25,17 @@ Rails.application.routes.draw do
     resources :customers, only: %i[new create show]
   end
 
-  devise_for :admin_users, path: 'admin'
+  # Users belong to the Admin
+  devise_for :admin_users, path: 'admin', controllers: {
+    # confirmations: 'admin/users/confirmations',
+    # omniauth_callbacks: 'admin/users/omniauth_callbacks',
+    passwords: 'admin/users/passwords',
+    # registrations: 'admin/users/registrations',
+    sessions: 'admin/users/sessions'
+    # unlocks: 'admin/users/unlocks',
+  }
 
+  # Admin
   namespace :admin do
     resources :admin_users
     resources :products
