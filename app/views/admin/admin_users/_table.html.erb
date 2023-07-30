@@ -1,0 +1,40 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><%= t('admin.admin_users.table.email') %></th>
+      <th scope="col"><%= t('admin.admin_users.table.role') %></th>
+      <th scope="col"><%= t('admin.admin_users.table.control.name') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% admin_users.each do |admin_user| %>
+      <tr>
+        <th scope="row"><%= admin_user.id %></th>
+        <td><%= admin_user.email %></td>
+        <td><%= admin_user.role %></td>
+        <td>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <% if can? :read, AdminUser %>
+                  <%= link_to t('admin.admin_users.table.control.show'),  admin_admin_user_path(admin_user), class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+              <div class="col">
+                <% if can? :edit, AdminUser %>
+                  <%= link_to t('admin.admin_users.table.control.edit'), edit_admin_admin_user_path(admin_user), class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+              <div class="col">
+                <% if can? :destroy, AdminUser %>
+                  <%= button_to t('admin.admin_users.table.control.delete'), admin_admin_user_path(admin_user), method: :delete, class: 'btn btn-danger' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

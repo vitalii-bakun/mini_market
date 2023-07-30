@@ -3,14 +3,12 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(model)
-    if model.nil?
+  def initialize(admin_user)
+    if admin_user.nil?
       anonymous
-    elsif model.user?
-      user
-    elsif model.manager?
+    elsif admin_user.manager?
       manager
-    elsif model.admin?
+    elsif admin_user.admin?
       admin
     end
   end
@@ -18,10 +16,6 @@ class Ability
   private
 
   def anonymous
-    cannot :manage, :all
-  end
-
-  def user
     cannot :manage, :all
   end
 
@@ -33,6 +27,6 @@ class Ability
     can :status, Customer
     can :read, Order
     can :manage, Product
-    cannot :manage, User
+    cannot :manage, AdminUser
   end
 end

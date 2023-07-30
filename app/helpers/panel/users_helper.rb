@@ -1,2 +1,0 @@
-module Panel::UsersHelper
-end

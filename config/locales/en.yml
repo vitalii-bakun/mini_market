@@ -64,7 +64,7 @@ en:
             card: 'Pay card'
             service: 'Pay online service'
           confirm: 'Confirm'
-  panel:
+  admin:
     dashboard: 
       index: 
         title: 'Dashboard'
@@ -79,7 +79,7 @@ en:
         products: 
           title: 'Products'
         users: 
-          title: 'Users'
+          title: 'AdminUsers'
             
     customers:
       form:

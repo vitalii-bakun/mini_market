@@ -1,0 +1,67 @@
+<%= form_with(model: customer, url: url) do |form| %>
+  <% if customer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.first_name'), class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.address'), style: "display: block", class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.phone'), style: "display: block", class: "form-label" %>
+    <%= form.phone_field :phone, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.uuid'), style: "display: block", class: "form-label" %>
+    <%= form.text_field :uuid, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.comment'), style: "display: block", class: "form-label" %>
+    <%= form.text_area :comment, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.dont_call'), class: "form-check-label" %>
+    <%= form.check_box :dont_call, class: "form-check-input" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.pay.name'), style: "display: block", class: "form-label" %>
+    <%= form.select :payment_method, Customer.payment_methods_keys_with_translate_text, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.customers.form.status.name'), style: "display: block", class: "form-label" %>
+    <%= form.select :status, Customer.statuses_keys_with_translate_text, class: "form-control" %>
+    <div class="form-text">
+      Must be 8-20 characters long.
+    </div>
+  </div>
+
+  <%= form.submit class:'btn btn-primary' %>
+<% end %>

@@ -1,8 +1,0 @@
-<h1><%= t('.title') %></h1>
-<%= render "form", user: @user, url: panel_users_path %>
-<br>
-<div>
-  <% if can? :read, User %>
-    <%= link_to t('.link.back'), panel_users_path, class: "btn btn-primary" %>
-  <% end %>
-</div>

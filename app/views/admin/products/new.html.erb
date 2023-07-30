@@ -1,0 +1,9 @@
+<h1><%= t('.title') %></h1>
+
+<%= render "form", product: @product, url: admin_products_path %>
+
+<br>
+
+<div>
+  <%= link_to t('.link.back'), admin_products_path, class: "btn btn-primary" %>
+</div>

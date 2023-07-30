@@ -1,16 +1,16 @@
-module Panel
+module Admin
   class CustomersTest < BaseSystemTest
     setup do
       @customer = customers(:john)
     end
 
     test "visiting new order page table of customers" do
-      visit panel_customers_status_url(status: 'new_order')
+      visit admin_customers_status_url(status: 'new_order')
       assert_selector "table", text: "John"
     end
 
     test "visiting new order page and update status" do
-      visit panel_customers_status_url(status: 'new_order')
+      visit admin_customers_status_url(status: 'new_order')
 
       select 'Send', match: :first
       click_button "Update", match: :first
@@ -19,7 +19,7 @@ module Panel
     end
 
     test "visiting new order page and edit customer" do
-      visit panel_customers_status_url(status: 'new_order')
+      visit admin_customers_status_url(status: 'new_order')
 
       click_link "Edit", match: :first
 

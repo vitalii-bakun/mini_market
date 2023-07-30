@@ -1,16 +1,16 @@
-module Panel
+module Admin
   class ProductsTest < BaseSystemTest
     setup do
       @product = products(:apple)
     end
 
     test "visiting the index" do
-      visit panel_products_url
+      visit admin_products_url
       assert_selector "table", text: "Product name"
     end
 
     test "should create product" do
-      visit panel_products_url
+      visit admin_products_url
       click_on "New product"
 
       fill_in "product[title]", with: "Apple 3"
@@ -25,7 +25,7 @@ module Panel
     end
 
     test "should update Product" do
-      visit panel_product_url(@product)
+      visit admin_product_url(@product)
       click_on "Edit this product", match: :first
 
       fill_in "product[title]", with: "Edit Apple 3"
@@ -40,7 +40,7 @@ module Panel
     end
 
     test "should destroy Product" do
-      visit panel_product_url(@product)
+      visit admin_product_url(@product)
       click_on "Destroy this product", match: :first
 
       assert_text "Product was successfully deleted."

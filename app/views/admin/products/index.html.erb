@@ -1,0 +1,7 @@
+<% if can? :new, Product %> <%= link_to t('.link.new_product'), new_admin_product_path, class: 'btn btn-primary' %> <% end %>
+
+<div class="container text-center">
+  <div class="row row-cols-auto">
+    <%= render 'table', products: @products  %>
+  </div>
+</div>

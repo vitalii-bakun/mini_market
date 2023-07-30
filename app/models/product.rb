@@ -10,5 +10,5 @@ class Product < ApplicationRecord
   has_many :orders, dependent: :nullify
   has_many :customers, through: :orders
 
-  belongs_to :user
+  belongs_to :admin_user
 end

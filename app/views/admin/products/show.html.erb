@@ -1,0 +1,44 @@
+<div class="container text-center" style="margin: 10px 0 10px 0">
+  <div class="row">
+    <div class="col">
+      <% if can? :read, Product %> <%= link_to t('.link.back'), admin_products_path, class:'btn btn-primary' %> <% end %>
+    </div>
+    <div class="col">
+      <% if can? :edit, Product %> <%= link_to t('.link.edit'), edit_admin_product_path(@product), class:'btn btn-primary' %> <% end %>
+    </div>
+    <div class="col">
+      <% if can? :destroy, Product %> <%= button_to t('.link.delete'), admin_product_path(@product), method: :delete, class: 'btn btn-danger' %> <% end %>
+    </div>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <% if @product.presentation.attached? %>
+        <%= image_tag @product.presentation, class: 'img-fluid rounded-start' %>
+      <% else %>
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Image" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="#868e96"></rect>
+          <text x="35%" y="50%" fill="#dee2e6" dy=".3em"><%= t('.no_image') %></text>
+        </svg>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="card-title">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <span class="badge text-bg-success" style="font-size:20px; margin: 5px"><%= t('.price') %> <%= add_currency_symbol(@product.price) %></span>
+              </div>
+              <div class="col">
+                <h1><%= @product.title %></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-text" style="padding: 5px 0 5px 0;"><%= @product.body %></div>
+      </div>
+    </div>
+  </div>
+</div>

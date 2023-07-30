@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-module Panel
+module Admin
   class BaseSystemTest < ApplicationSystemTestCase
     include Devise::Test::IntegrationHelpers
     def setup

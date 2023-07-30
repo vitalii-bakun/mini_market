@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     resources :customers, only: %i[new create show]
   end
 
-  devise_for :users, path: 'panel'
+  devise_for :admin_users, path: 'admin'
 
-  namespace :panel do
-    resources :users
+  namespace :admin do
+    resources :admin_users
     resources :products
     get '/', to: 'dashboard#index', as: 'dashboard'
     get 'customers/:status', to: 'customers#status', as: 'customers_status',

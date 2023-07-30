@@ -1,0 +1,39 @@
+<table class="table table-light table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><%= t('admin.customers.table.first_name') %></th>
+      <th scope="col"><%= t('admin.customers.table.address') %></th>
+      <th scope="col"><%= t('admin.customers.table.phone') %></th>
+      <th scope="col"><%= t('admin.customers.table.comment') %></th>
+      <th scope="col"><%= t('admin.customers.table.dont_call') %></th>
+      <th scope="col"><%= t('admin.customers.table.payment_method') %></th>
+      <th scope="col"><%= t('admin.customers.table.update') %></th>
+      <th scope="col"><%= t('admin.customers.table.control') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <th scope="row"><%= customer.id %></th>
+        <td><%= customer.first_name %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.comment %></td>
+        <td><%= customer.dont_call %></td>
+        <td><%= customer.payment_method %></td>
+        <td>
+          <%= form_with model: customer, url: admin_customer_path(customer), method: :patch do |f| %>
+            <%= f.select :status, Customer.statuses_keys_with_translate_text, class: 'form-select' %>
+            <%= f.submit 'Update', class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :read, Order %> <%= link_to "Orders", admin_customer_orders_path(customer), class: "btn btn-primary" %><% end %>
+          <% if can? :edit, Customer %> <%= link_to "Edit", edit_admin_customer_path(customer), class: "btn btn-primary" %> <% end %>
+          <% if can? :destroy, Customer %> <%= button_to "Delete", admin_customer_path(customer), method: :delete, class: "btn btn-danger" %><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

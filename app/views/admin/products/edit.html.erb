@@ -1,0 +1,14 @@
+<div class="container text-center" style="margin: 10px 0 10px 0">
+  <div class="row">
+    <div class="col">
+      <%= link_to t('.link.show'), admin_product_path(@product), class:'btn btn-primary' %>
+    </div>
+    <div class="col">
+      <%= link_to t('.link.back'), admin_products_path, class:'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<h1><%= t('.title') %></h1>
+
+<%= render "form", product: @product, url: admin_product_path(@product) %>

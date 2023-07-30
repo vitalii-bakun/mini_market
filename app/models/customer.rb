@@ -38,11 +38,11 @@ class Customer < ApplicationRecord
 
   class << self
     def payment_methods_keys_with_translate_text
-      payment_methods.keys.map { |key| [I18n.t("panel.customers.form.pay.#{key}"), key] }
+      payment_methods.keys.map { |key| [I18n.t("admin.customers.form.pay.#{key}"), key] }
     end
 
     def statuses_keys_with_translate_text
-      statuses.keys.map { |key| [I18n.t("panel.customers.form.status.#{key}"), key] }
+      statuses.keys.map { |key| [I18n.t("admin.customers.form.status.#{key}"), key] }
     end
   end
 end

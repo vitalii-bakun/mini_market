@@ -10,8 +10,8 @@ require 'faker'
 require 'securerandom'
 
 # Create users
-%w[user manager admin].each do |role|
-  User.create(email: "#{role}@#{role}.com", password: 'password', role:)
+%w[manager admin].each do |role|
+  AdminUser.create(email: "#{role}@#{role}.com", password: 'password', role:)
 end
 
 # Create customers
@@ -34,7 +34,7 @@ end
                   description: Faker::Lorem.paragraph,
                   body: Faker::Lorem.paragraph,
                   available: Faker::Boolean.boolean,
-                  user: User.all.sample)
+                  admin_user: AdminUser.all.sample)
 
   if Faker::Boolean.boolean
     p.presentation.attach(io: File.open('./public/apple-touch-icon.png'),
