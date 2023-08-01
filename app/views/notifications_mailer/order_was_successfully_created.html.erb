@@ -1,0 +1,9 @@
+<h1>Hi, <%= @customer.first_name %>!</h1>
+<p>Your order was successfully created!</p>
+<h3>Order ID: <%= @customer.uuid %></h3>
+<ul>
+  <% @customer.orders.each do |order| %>
+    <li><%= "#{order.product.title}: #{order.quantity}" %></li>
+  <% end %>
+</ul>
+<p>Total price: <%= @customer.orders_total_price %></p>

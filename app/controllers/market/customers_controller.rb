@@ -16,13 +16,14 @@ module Market
     end
 
     def create
-      customer = Customer.new(customer_params)
+      @customer = Customer.new(customer_params)
 
-      if customer.save
+      if @customer.save
         # Creating orders for the customer
-        customer.create_orders_and_destroy_all_from_carts
-
-        redirect_to customer_path(id: customer.uuid), notice: t('.success')
+        @customer.create_orders_and_destroy_all_from_carts
+        # Notification the customer about the order
+        NotificationsMailer.order_was_successfully_created(@customer).deliver_later(wait: 10.seconds)
+        redirect_to customer_path(id: @customer.uuid), notice: t('.success')
       else
         redirect_to new_customer_path, alert: t('.error')
       end
@@ -38,7 +39,9 @@ module Market
                                                    order_id: @customer.uuid,
                                                    result_url: customer_url(id: @customer.uuid))
 
-      @success = LiqpayService.order_status(@customer.uuid)['status'] == 'success'
+      return if @customer.payment_status?
+
+      OrderStatusJob.set(wait: 5.seconds).perform_later(@customer)
     end
 
     def user_has_products_in_cart?

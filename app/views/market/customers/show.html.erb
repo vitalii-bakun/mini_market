@@ -1,7 +1,7 @@
 <div>
   <h1><%= t('.order_info.first_name', name: @customer.first_name) %></h1>
   <h2><%= t('.order_info.success') %></h2>
-  <% unless @success %>
+  <% unless @customer.payment_status %>
     <h2><%= t(".order_info.payment.#{@customer.payment_method}") %></h2>
     <%= raw(@html_form_pay) %>
   <% else %>

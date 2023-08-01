@@ -1,0 +1,10 @@
+Hi, <%= @customer.first_name %>!
+
+Your order was successfully created!
+Order ID: <%= @customer.uuid %>
+
+<% @customer.orders.each do |order| %>
+- <%= "#{order.product.title}: #{order.quantity}" %>
+<% end %>
+
+Total price: <%= @customer.orders_total_price %>

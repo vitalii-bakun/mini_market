@@ -1,7 +1,5 @@
 class Customer < ApplicationRecord
-  before_create do
-    self.uuid = SecureRandom.uuid
-  end
+  before_create :set_uuid
 
   belongs_to :market_user
   has_many :orders, dependent: :nullify
@@ -38,13 +36,9 @@ class Customer < ApplicationRecord
     market_user.carts.destroy_all
   end
 
-  class << self
-    def payment_methods_keys_with_translate_text
-      payment_methods.keys.map { |key| [I18n.t("admin.customers.form.pay.#{key}"), key] }
-    end
+  private
 
-    def statuses_keys_with_translate_text
-      statuses.keys.map { |key| [I18n.t("admin.customers.form.status.#{key}"), key] }
-    end
+  def set_uuid
+    self.uuid = SecureRandom.uuid
   end
 end

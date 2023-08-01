@@ -27,7 +27,7 @@ module LiqpayService
       liqpay.cnb_form(data)
     end
 
-    def order_status(order_id)
+    def get_order_status(order_id)
       liqpay = ::Liqpay.new
       liqpay.api("request", {
                    action: "status",
