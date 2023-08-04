@@ -5,8 +5,11 @@ class Market::Users::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
   # devise :omniauthable, omniauth_providers: [:twitter]
 
   # You should also create an action method in this controller like this:
-  # def twitter
-  # end
+  def google_oauth2
+    @user = MarketUser.from_omniauth(request.env['omniauth.auth'])
+    sign_in_and_redirect @user
+    set_flash_message(:notice, :success, kind: "Google")
+  end
 
   # More info at:
   # https://github.com/heartcombo/devise#omniauth

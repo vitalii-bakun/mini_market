@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Users belong to the Market
   devise_for :market_users, controllers: {
     # confirmations: 'market/users/confirmations',
-    # omniauth_callbacks: 'market/users/omniauth_callbacks',
+    omniauth_callbacks: 'market/users/omniauth_callbacks',
     passwords: 'market/users/passwords',
     registrations: 'market/users/registrations',
     sessions: 'market/users/sessions'

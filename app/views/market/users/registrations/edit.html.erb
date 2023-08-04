@@ -27,6 +27,21 @@
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
   </div>
 
+   <div class="mb-3">
+    <%= f.label :first_name, class: "form-label" %>
+    <%= f.text_field :first_name, autocomplete: "first-name", class: "form-control" %>
+  </div>
+
+<div class="mb-3">
+    <%= f.label :address, class: "form-label" %>
+    <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :phone, class: "form-label" %>
+    <%= f.telephone_field :phone, autocomplete: "phone", class: "form-control" %>
+  </div>
+
     <%= f.submit "Update", class: 'btn btn-primary' %>
 
 <% end %>

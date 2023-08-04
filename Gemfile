@@ -73,3 +73,8 @@ gem "devise", "~> 4.9"
 gem "cancancan", "~> 3.5"
 
 gem 'liqpay', github: 'liqpay/sdk-ruby'
+gem "omniauth", "~> 2.1"
+
+gem "omniauth-google-oauth2", "~> 1.1"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"
