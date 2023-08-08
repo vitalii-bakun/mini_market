@@ -2,6 +2,10 @@ module Market
   class CustomersController < BaseController
     before_action :cart_has_not_products, only: %i[create], if: :user_has_products_in_cart?
 
+    def index
+      @customers = current_market_user.customers
+    end
+
     def new
       @customer = Customer.new(address: current_market_user.address,
                                phone: current_market_user.phone,
@@ -23,9 +27,11 @@ module Market
         @customer.create_orders_and_destroy_all_from_carts
         # Notification the customer about the order
         NotificationsMailer.order_was_successfully_created(@customer).deliver_later(wait: 10.seconds)
-        redirect_to customer_path(id: @customer.uuid), notice: t('.success')
+        redirect_to customer_path(id: @customer.uuid),
+                    notice: t('.success')
       else
-        redirect_to new_customer_path, alert: t('.error')
+        redirect_to new_customer_path,
+                    alert: t('.error')
       end
     end
 
@@ -49,12 +55,18 @@ module Market
     end
 
     def cart_has_not_products
-      redirect_to root_path, alert: t('market.customers.cart_empty')
+      redirect_to root_path,
+                  alert: t('market.customers.cart_empty')
     end
 
     def customer_params
       params.require(:customer)
-            .permit(:first_name, :address, :phone, :comment, :dont_call, :payment_method)
+            .permit(:first_name,
+                    :address,
+                    :phone,
+                    :comment,
+                    :dont_call,
+                    :payment_method)
             .merge(market_user: current_market_user)
     end
   end

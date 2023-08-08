@@ -6,16 +6,27 @@
       <th scope="col"><%= t('admin.orders.table.price') %></th>
       <th scope="col"><%= t('admin.orders.table.quantity') %></th>
       <th scope="col"><%= t('admin.orders.table.total') %></th>
+      <th scope="col"><%= t('admin.orders.table.control') %></th>
     </tr>
   </thead>
   <tbody>
-    <% @orders.each do |order| %>
+    <% orders.each do |order| %>
       <tr>
         <th scope="row"><%= order.id %></th>
         <td><%= link_to order.product.title, admin_product_path(order.product) %></td>
         <td><%= currency_with_symbol order.current_price %></td>
         <td><%= order.quantity %></td>
         <td><%= currency_with_symbol order.total_price %></td>
+        <td>
+          <div class="container text-center">
+            <% if can? :edit, Order %>
+              <%= link_to 'Edit', edit_admin_customer_order_path(customer_id: order.customer_id, id: order.id), class: 'btn btn-primary', style: 'margin: 5px;' %>
+            <% end %>
+            <% if can? :destroy, Order %>
+              <%= button_to 'Delete', admin_customer_order_path(customer_id: order.customer_id, id: order.id), method: :delete, class: 'btn btn-danger', style: 'margin: 5px;' %>
+            <% end %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,8 +35,9 @@
       <td></td>
       <td></td>
       <td></td>
-      <td><%= @orders.sum(&:quantity) %></td>
-      <td><%= currency_with_symbol @orders.sum(&:total_price) %></td>
+      <td><%= orders.sum(&:quantity) %></td>
+      <td><%= currency_with_symbol orders.sum(&:total_price) %></td>
+      <td></td>
     </tr>
   </tfoot>
 </table>

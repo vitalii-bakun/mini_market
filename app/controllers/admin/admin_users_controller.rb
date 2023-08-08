@@ -12,9 +12,11 @@ module Admin
 
     def update
       if @admin_user.update(admin_user_params)
-        redirect_to admin_admin_user_path(@admin_user), notice: t('.success')
+        redirect_to admin_admin_user_path(@admin_user),
+                    notice: t('.success')
       else
-        redirect_to edit_admin_admin_user_path(@admin_user), alert: @admin_user.errors.full_messages
+        redirect_to edit_admin_admin_user_path(@admin_user),
+                    alert: @admin_user.errors.full_messages
       end
     end
 
@@ -26,16 +28,19 @@ module Admin
       @admin_user = AdminUser.new(admin_user_params)
 
       if @admin_user.save
-        redirect_to admin_admin_user_path(@admin_user), notice: t('.success')
+        redirect_to admin_admin_user_path(@admin_user),
+                    notice: t('.success')
       else
-        redirect_to new_admin_admin_user_path, alert: @admin_user.errors.full_messages
+        redirect_to new_admin_admin_user_path,
+                    alert: @admin_user.errors.full_messages
       end
     end
 
     def destroy
       @admin_user.destroy
 
-      redirect_to admin_admin_users_path, notice: t('.success')
+      redirect_to admin_admin_users_path,
+                  notice: t('.success')
     end
 
     private
@@ -45,7 +50,11 @@ module Admin
     end
 
     def admin_user_params
-      params.require(:admin_user).permit(:email, :password, :password_confirmation, :role)
+      params.require(:admin_user)
+            .permit(:email,
+                    :password,
+                    :password_confirmation,
+                    :role)
     end
   end
 end

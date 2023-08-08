@@ -1,0 +1,5 @@
+<% set_meta_tags(
+  title: t('.title') 
+  ) %>
+<h1><%= t('.title') %></h1>
+<%= render "form", order: @order, url: admin_customer_order_path(customer_id:@order.customer_id, id: @order.id) %>

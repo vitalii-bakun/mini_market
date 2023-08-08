@@ -3,5 +3,5 @@ class AdminUser < ApplicationRecord
 
   has_many :products
 
-  enum role: %i[manager admin]
+  enum role: %i[administrator moderator]
 end

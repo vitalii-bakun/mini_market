@@ -1,0 +1,5 @@
+<% set_meta_tags(
+  title: t('.title') 
+  ) %>
+<h1><%= t('.title') %></h1>
+<%= render "form", market_user: @market_user, url: admin_market_user_path(@market_user) %>

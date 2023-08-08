@@ -1,0 +1,36 @@
+<header style="margin:5px;">
+  <% if admin_user_signed_in? %>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <% { 
+          'Product' => new_admin_product_path, 
+          'AdminUser' => new_admin_admin_user_path,
+          'Customer' => new_admin_customer_path,
+          'MarketUser' => new_admin_market_user_path
+          }.each do |name, path| %>
+            <% if can? :new, name.constantize %>
+              <%= link_to t('layout.admin.header.links.new', name: name), path, class: 'btn btn-success' %>
+            <% end %>
+          <% end %>
+          <hr>
+          <% { 
+          'Product' => admin_products_path, 
+          'AdminUser' => admin_admin_users_path,
+          'Customer' => admin_customers_path,
+          'MarketUser' => admin_market_users_path
+          }.each do |name, path| %>
+            <% if can? :read, name.constantize %>
+              <%= link_to t('layout.admin.header.links.read', name: name.pluralize), path, class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col col-lg-4">
+          <%= t('layout.admin.header.profile.hello', name: current_admin_user.email) %> <br>
+          <%=  t('layout.admin.header.profile.role', role: current_admin_user.role ) %>
+          <%= button_to t('layout.admin.header.profile.signout'), destroy_admin_user_session_path, method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</header>

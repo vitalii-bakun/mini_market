@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Market::Users::PasswordsController < Devise::PasswordsController
+  layout 'market/application'
+  
   # GET /resource/password/new
   # def new
   #   super

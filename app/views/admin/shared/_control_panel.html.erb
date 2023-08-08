@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <% if can? :read, name_model %>
+    <%= link_to t('admin.shared.show'), show_model_path, class: 'btn btn-primary',style: 'margin: 5px;' %>
+  <% end %>
+  <% if can? :edit, name_model %>
+    <%= link_to t('admin.shared.edit'), edit_model_path, class: 'btn btn-primary', style: 'margin: 5px;' %>
+  <% end %>
+  <% if can? :destroy, name_model %>
+    <%= button_to t('admin.shared.delete'), delete_model_path, method: :delete, class: 'btn btn-danger', style: 'margin: 5px;' %>
+  <% end %>
+</div>

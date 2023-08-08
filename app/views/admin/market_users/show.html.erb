@@ -1,0 +1,14 @@
+<% set_meta_tags(
+  title: t('.title', email:@market_user.email)
+  ) %>
+  <h1><%= t('.title', email:@market_user.email) %></h1>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= t('.card.email') %> <%= @market_user.email %></li>
+    <li class="list-group-item"><%= t('.card.first_name') %> <%= @market_user.first_name %></li>
+    <li class="list-group-item"><%= t('.card.address') %> <%= @market_user.address %></li>
+    <li class="list-group-item"><%= t('.card.phone') %> <%= @market_user.phone %></li>
+    <li class="list-group-item"><%= t('.card.customers') %> <%= @market_user.customers.count %></li>
+    <li class="list-group-item"><%= t('.card.carts') %> <%= @market_user.carts.count %></li>
+  </ul>
+</div>

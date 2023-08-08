@@ -12,9 +12,11 @@ module Admin
 
     def update
       if @product.update(product_params)
-        redirect_to admin_product_path(@product), notice: t('.success')
+        redirect_to admin_product_path(@product),
+                    notice: t('.success')
       else
-        redirect_to edit_admin_product_path(@product), alert: @product.errors.full_messages
+        redirect_to edit_admin_product_path(@product),
+                    alert: @product.errors.full_messages
       end
     end
 
@@ -23,20 +25,22 @@ module Admin
     end
 
     def create
-      @product = Product.new(product_params)
-      @product.user = current_admin_user
+      @product = Product.new(product_params.merge(admin_user: current_admin_user))
 
       if @product.save
-        redirect_to admin_product_path(@product), notice: t('.success')
+        redirect_to admin_product_path(@product),
+                    notice: t('.success')
       else
-        redirect_to new_admin_product_path, alert: @product.errors.full_messages
+        redirect_to new_admin_product_path,
+                    alert: @product.errors.full_messages
       end
     end
 
     def destroy
       @product.destroy
 
-      redirect_to admin_products_path, notice: t('.success')
+      redirect_to admin_products_path,
+                  notice: t('.success')
     end
 
     private
@@ -46,7 +50,13 @@ module Admin
     end
 
     def product_params
-      params.require(:product).permit(:title, :price, :body, :available, :description, :presentation)
+      params.require(:product)
+            .permit(:title,
+                    :price,
+                    :body,
+                    :available,
+                    :description,
+                    :presentation)
     end
   end
 end

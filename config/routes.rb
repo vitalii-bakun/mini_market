@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       post 'cart/update', to: 'carts#update', as: 'cart_update'
     end
 
-    resources :customers, only: %i[new create show]
+    resources :customers, only: %i[index new create show]
   end
 
   # Users belong to the Admin
@@ -38,13 +38,16 @@ Rails.application.routes.draw do
 
   # Admin
   namespace :admin do
+    resources :market_users
     resources :admin_users
     resources :products
     get '/', to: 'dashboard#index', as: 'dashboard'
-    get 'customers/:status', to: 'customers#status', as: 'customers_status',
-                             constraints: { status: /(new|send|done|canceled)_order/ }
-    resources :customers, only: %i[edit update destroy] do
-      get 'orders', to: 'customers#orders', as: 'orders'
+    resources :customers do
+      # get 'status', to: 'customers#status', as: 'customers_status',
+      #                          constraints: { status: /(new|send|done|canceled)_order/ }
+      # get 'orders', to: 'orders#index', as: 'orders'
+
+      resources :orders, except: %i[show index]
     end
   end
 end

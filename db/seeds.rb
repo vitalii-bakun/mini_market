@@ -9,13 +9,13 @@
 require 'faker'
 require 'securerandom'
 
-puts 'Create admin users'
-%w[manager admin].each do |role|
+puts 'Create AdminUsers'
+%w[moderator administrator].each do |role|
   AdminUser.create(email: "#{role}@#{role}.com", password: 'password', role:)
 end
 
-puts 'Create market users'
-%w[user simple_user].each do |name|
+puts 'Create MarketUsers'
+%w[user user2].each do |name|
   MarketUser.create(email: "#{name}@#{name}.com",
                     password: 'password',
                     first_name: Faker::Name.first_name,

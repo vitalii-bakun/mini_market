@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Market::Users::UnlocksController < Devise::UnlocksController
+  layout 'market/application'
+  
   # GET /resource/unlock/new
   # def new
   #   super

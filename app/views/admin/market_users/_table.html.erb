@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><%= t('admin.market_users.table.email') %></th>
+      <th scope="col"><%= t('admin.market_users.table.first_name') %></th>
+      <th scope="col"><%= t('admin.market_users.table.address') %></th>
+      <th scope="col"><%= t('admin.market_users.table.phone') %></th>
+      <th scope="col"><%= t('admin.market_users.table.customers') %></th>
+      <th scope="col"><%= t('admin.market_users.table.control') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% market_users.each do |market_user| %>
+      <tr>
+        <th scope="row"><%= market_user.id %></th>
+        <td><%= market_user.email %></td>
+        <td><%= market_user.first_name %></td>
+        <td><%= market_user.address %></td>
+        <td><%= market_user.phone %></td>
+        <td><%= market_user.customers.count %></td>
+        <td>
+          <%= render partial: 'admin/shared/control_panel', locals: {
+            name_model: MarketUser, 
+            show_model_path:admin_market_user_path(market_user), 
+            edit_model_path: edit_admin_market_user_path(market_user), 
+            delete_model_path: admin_market_user_path(market_user) } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -5,29 +5,22 @@
       <th scope="col"><%= t('admin.products.table.title') %></th>
       <th scope="col"><%= t('admin.products.table.price') %></th>
       <th scope="col"><%= t('admin.products.table.available') %></th>
-      <th scope="col"><%= t('admin.products.table.description') %></th>
-      <th scope="col"><%= t('admin.products.table.control.name') %></th>
+      <th scope="col"><%= t('admin.products.table.control') %></th>
     </tr>
   </thead>
   <tbody>
     <% products.each do |product| %>
       <tr>
         <th scope="row"><%= product.id %></th>
-        <td><%= link_to product.title, admin_product_path(product) %></td>
+        <td><%= product.title %></td>
         <td><%= currency_with_symbol(product.price) %></td>
-        <td><%= product.available %></td>
-        <td><%= product.description %></td>
+        <td><%= convert_boolean product.available %></td>
         <td>
-          <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <% if can? :edit, Product %> <%= link_to t('admin.products.table.control.edit'), edit_admin_product_path(product), class: 'btn btn-primary' %><% end %>
-              </div>
-              <div class="col">
-                <% if can? :destroy, Product %> <%= button_to t('admin.products.table.control.delete'), admin_product_path(product), method: :delete, class: 'btn btn-danger' %> <% end %>
-              </div>
-            </div>
-          </div>
+          <%= render partial: 'admin/shared/control_panel', locals: {
+            name_model: Product, 
+            show_model_path:admin_product_path(product), 
+            edit_model_path: edit_admin_product_path(product), 
+            delete_model_path: admin_product_path(product) } %>
         </td>
       </tr>
     <% end %>

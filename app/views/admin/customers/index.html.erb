@@ -1,0 +1,15 @@
+<% set_meta_tags(
+  title: t('.title') 
+  ) %>
+<h1><%= t('.title') %></h1>
+<% { 
+  'New' => admin_customers_path(status:'new'), 
+  'Send' => admin_customers_path(status:'send'),
+  'Done' => admin_customers_path(status:'done'),
+  'Canceled' => admin_customers_path(status:'canceled')
+      }.each do |name, path| %>
+  <% if can? :read, Customer %>
+    <%= link_to "Customers #{name}", path, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+<%= render 'table', customers: @customers %>

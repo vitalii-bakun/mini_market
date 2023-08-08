@@ -1,3 +1,7 @@
+<% set_meta_tags(
+  title: "Creating an order"
+  ) %>
+
 <%= form_with url: customers_path, model: @customer, html: { class: 'needs-validation' } do |f| %>
   <div class="container text-center">
     <div class="row">

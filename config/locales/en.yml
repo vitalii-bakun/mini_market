@@ -67,19 +67,43 @@ en:
     dashboard: 
       index: 
         title: 'Dashboard'
-        link:
-          new: 'New'
-          all: 'Look all'
-        sign:
-          in: 'Sign in'
-          out: 'Sign out'
-        status: 
-          title: 'Status order'
-        products: 
-          title: 'Products'
-        users: 
-          title: 'Users'
-            
+    market_users:
+      form:
+        first_name: 'First name'
+        address: 'Address'
+        phone: 'Phone'
+        email: 'Email'
+        submit: 'Send'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+      table:
+        first_name: 'First name'
+        address: 'Address'
+        phone: 'Phone'
+        email: 'Email'
+        customers: 'Customers'
+        control: 'Control'
+      edit:
+        title: 'Edit a market user'
+      update:
+        success: 'Market user was successfully updated.'
+      index:
+        title: 'Market users'
+      new:
+        title: 'Create a new market user'
+      create:
+        success: 'Market user was successfully created.'
+      destroy:
+        success: 'Market user was successfully deleted.'
+      show:
+        title: 'Market user: %{email}'
+        card:
+          email: 'Email:'
+          first_name: 'First name:'
+          address: 'Address:'
+          phone: 'Phone:'
+          customers: 'Customers:'
+          carts: 'Carts:'
     customers:
       form:
         first_name: 'First name'
@@ -88,10 +112,10 @@ en:
         uuid: 'UUID'
         comment: 'Comment'
         dont_call: "Don't call me"
+        payment_status: 'Payment status'
         pay:
           name: 'Payment: '
-          cash: 'Cash'
-          card: 'Card'
+          cash: 'Only Cash'
           service: 'Online service'
         status:
           name: 'Status order: '
@@ -106,15 +130,40 @@ en:
         comment: 'Comment'
         dont_call: "Don't call me"
         payment_method: 'Payment method'
+        payment_status: 'Payment status'
         status: 'Status order'
         update: 'Update status'
         control: 'Control'
-      status_update:
-        success: 'Customer status was successfully updated.'
+      edit:
+        title: 'Edit a customer'
+      index:
+        title: 'Customers'
+      new:
+        title: 'Create a new customer'
+      create:
+        success: 'Customer was successfully created.'
       update:
         success: 'Customer was successfully updated.'
       destroy:
         success: 'Customer was successfully deleted.'
+      show:
+        title: 'Customer: %{name}'
+        card:
+          market_user: 'Market user'
+          first_name: 'First name:'
+          address: 'Address:'
+          phone: 'Phone:'
+          uuid: 'UUID:'
+          comment: 'Comment:'
+          dont_call: "Don't call me:"
+          payment_status: 'Payment status:'
+          payment_method: 'Payment method:'
+          status: 'Status order:'
+          total_price: 'Total price all orders:'
+          total_quantity: 'Total quantity all orders:'
+        orders:
+          title: 'Orders: %{count}'
+          create: 'Add an order to this customer'
     products:
       form:
         title: 'Product name'
@@ -128,16 +177,9 @@ en:
         title: 'Product name'
         price: 'Price per unit'
         available: 'Available'
-        description: 'Short description'
-        control:
-          name: 'Control'
-          delete: 'Delete'
-          edit: 'Edit'
+        control: 'Control'
       edit:
-        title: 'Editing product'
-        link:
-          show: 'Show this product'
-          back: 'Back to products'
+        title: 'Edit a product'
       create:
         success: 'Product was successfully created.'
       update:
@@ -145,26 +187,43 @@ en:
       destroy:
         success: 'Product was successfully deleted.'
       index:
-        link:
-          new_product: 'New product'
+        title: 'Products'
       new:
-        title: 'New product'
-        link:
-          back: 'Back to products'
+        title: 'New a product'
       show:
-        link:
-          back: 'Back to products'
-          edit: 'Edit this product'
-          delete: 'Destroy this product'
-        no_image: 'No image'
-        price: 'Price:'
+        title: 'Product: %{title}'
+        card:
+          no_image: 'No image'
+          title: 'Title:'
+          price: 'Price:'
+          body: 'Content:'
+          orders: 'Orders:'
+          description: 'Description:'
+          available: 'Available:'
+          admin_user: 'Admin user'
     orders:
+      form:
+        product: 'Choose a Product'
+        current_price: 'Current price'
+        quantity: 'Quantity'
+        submit: 'Send'
       table:
         name: 'Product name'
         price: 'Price per unit'
         quantity: 'Quantity'
         total: 'Total price'
-    users:
+        control: 'Control'
+      edit:
+        title: 'Edit an order'
+      update:
+        success: 'Order was successfully updated.'
+      destroy:
+        success: 'Order was successfully deleted.'
+      new:
+        title: 'Create a new order'
+      create:
+        success: 'Order was successfully created.'
+    admin_users:
       form:
         email: 'Email'
         password: 'Password'
@@ -174,39 +233,55 @@ en:
       table:
         email: 'Email'
         role: 'Role'
-        control:
-          name: 'Control'
-          show: 'Show'
-          edit: 'Edit'
-          delete: 'Delete'
+        control: 'Control'
       edit:
-        title: "Edit user"
-        link:
-          back: 'Back to users'
-          show: 'Show this user'
+        title: "Edit a admin user"
       index:
-        link:
-          new_user: 'New user'
+        title: 'Admin users'
       new:
-        link:
-          back: 'Back to users'
+        title: 'Create a new admin users'
+      create:
+        success: 'Admin user was successfully created.'
+      update:
+        success: 'Admin user was successfully updated.'
+      destroy:
+        success: 'Admin user was successfully deleted.'
       show:
-        link:
-          back: 'Back to users'
-          edit: 'Edit this user'
-          delete: 'Destroy this user'
-        
+        title: 'Show a admin user: %{email}'
+        card:
+          email: 'Email:'
+          role: 'Role:'
+          products: 'Products:'
+    shared:
+      edit: 'Edit'
+      deelete: 'Delete'
+      show: 'Show'
+      convert:
+        yes: 'Yes'
+        no: 'No'
   layout:
-    footer:
-      about:
-        title: 'About us'
-        content: "Some quick example text to build on the card title and make up the bulk of the card's content."
-      contacts: 
-        title: 'Contacts'
-      pages: 
-        title: 'Pages'
-    header:
-      link:
-        logo: 'MiniMarket'
-        home: 'Home'
-        cart: 'Cart'
+    admin:
+      header:
+        links:
+          new: 'New %{name}'
+          read: 'All %{name}'
+        profile:
+          hello: 'Hello, %{name}!'
+          role: 'Role: %{role}'
+          signout: 'Sign out'
+      footer:
+        time: 'Time on the server: %{time}'
+    market:
+      footer:
+        about:
+          title: 'About us'
+          content: "Some quick example text to build on the card title and make up the bulk of the card's content."
+        contacts: 
+          title: 'Contacts'
+        pages: 
+          title: 'Pages'
+      header:
+        link:
+          logo: 'MiniMarket'
+          home: 'Home'
+          cart: 'Cart'

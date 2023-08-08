@@ -1,31 +1,4 @@
+<% set_meta_tags(
+  title: t('.title')
+  ) %>
 <h1><%= t('.title') %></h1>
-<% if admin_user_signed_in? %>
-  Hello, <%= current_admin_user.email %>. <br>
-  Role: <b><%= current_admin_user.role %></b>
-  <%= button_to t('.sign.out'), destroy_admin_user_session_path, method: :delete, class: "btn btn-danger" %>
-<% else %>
-  <%= link_to t('.sign.in'), new_admin_user_session_path, class: "btn btn-primary" %>
-<% end %>
-<hr>
-<h2><%= t('.status.title') %></h2>
-<% if can? :status, Customer %>
-  <% Customer.statuses_keys_with_translate_text.each do |name| %>
-    <%= link_to name[0], admin_customers_status_path(status: name[1]), class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-<hr>
-<h2><%= t('.products.title') %></h2>
-<% if can? :read, Product %>
-  <%= link_to t('.link.all'), admin_products_path, class: 'btn btn-primary' %>
-<% end %>
-<% if can? :new, Product %>
-  <%= link_to t('.link.new'), new_admin_product_path, class: 'btn btn-primary' %>
-<% end %>
-<hr>
-<h2><%= t('.users.title') %></h2>
-<% if can? :read, AdminUser %>
-  <%= link_to t('.link.all'), admin_admin_users_path, class: 'btn btn-primary' %>
-<% end %>
-<% if can? :new, AdminUser %>
-  <%= link_to t('.link.new'), new_admin_admin_user_path, class: 'btn btn-primary' %>
-<% end %>

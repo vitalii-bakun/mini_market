@@ -20,6 +20,7 @@
             <%= render partial: 'market/carts/add' %>
           </div>
           <%= link_to 'Edit', edit_market_user_registration_path, class: 'btn btn-warning navbar-text', style: 'margin-left: 10px; color:white;' %>
+            <%= link_to 'Customer', customers_path, class: 'btn btn-warning navbar-text', style: 'margin-left: 10px; color:white;' %>
           <%= button_to 'Sign Out', destroy_market_user_session_path, class: 'btn btn-danger navbar-text', method: :delete, style: 'margin-left: 10px; color:white;' %>
         <% else %>
           <%= link_to 'Sign In', new_market_user_session_path, class: 'btn btn-primary navbar-text', style: 'margin-right: 5px; color: white;' %>

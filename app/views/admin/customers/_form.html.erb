@@ -33,6 +33,10 @@
     <%= form.label t('admin.customers.form.dont_call'), class: "form-check-label" %>
     <%= form.check_box :dont_call, class: "form-check-input" %>
   </div>
+    <div class="mb-3">
+    <%= form.label t('admin.customers.form.payment_status'), class: "form-check-label" %>
+    <%= form.check_box :payment_status, class: "form-check-input" %>
+  </div>
   <div class="mb-3">
     <%= form.label t('admin.customers.form.pay.name'), style: "display: block", class: "form-label" %>
     <%= form.select :payment_method, customer_payment_methods_keys, class: "form-control" %>

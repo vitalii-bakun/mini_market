@@ -1,0 +1,25 @@
+<% set_meta_tags(
+  title: t(".title",name: @customer.first_name)
+  ) %>
+<h1><%= t(".title", name: @customer.first_name) %></h1>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= link_to t('.card.market_user'), admin_market_user_path(@customer.market_user) %></li>
+    <li class="list-group-item"><%= t('.card.first_name') %> <%= @customer.first_name %></li>
+    <li class="list-group-item"><%= t('.card.address') %> <%= @customer.address %></li>
+    <li class="list-group-item"><%= t('.card.phone') %> <%= @customer.phone %></li>
+    <li class="list-group-item"><%= t('.card.uuid') %><%= @customer.uuid %></li>
+    <li class="list-group-item"><%= t('.card.comment') %> <%= @customer.comment %></li>
+    <li class="list-group-item"><%= t('.card.dont_call') %> <%= convert_boolean @customer.dont_call %></li>
+    <li class="list-group-item"><%= t('.card.payment_status') %> <%= convert_boolean @customer.payment_status %></li>
+    <li class="list-group-item"><%= t('.card.payment_method') %> <%= @customer.payment_method %></li>
+    <li class="list-group-item"><%= t('.card.status') %> <%= @customer.status %></li>
+    <li class="list-group-item"><%= t('.card.total_price') %> <%= currency_with_symbol @customer.orders_total_price %></li>
+    <li class="list-group-item"><%= t('.card.total_quantity') %> <%= @customer.orders_total_quantity %></li>
+  </ul>
+</div>
+<h2><%= t('.orders.title', count: @customer.orders.count) %></h2>
+<% if can? :create, Order %>
+  <%= link_to t('.orders.create'), new_admin_customer_order_path(@customer), class: "btn btn-success", style: "margin: 10px;" %>
+<% end %>
+<%= render partial: "admin/orders/table", locals: {orders: @customer.orders }%>

@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('.table.uuid') %></th>
+      <th scope="col"><%= t('.table.total_price') %></th>
+      <th scope="col"><%= t('.table.total_quantity') %></th>
+      <th scope="col"><%= t('.table.status') %></th>
+      <th scope="col"><%= t('.table.payment_status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <th><%= link_to customer.uuid, customer_path(id:customer.uuid) %></th>
+        <td><%= currency_with_symbol customer.orders_total_price %></td>
+        <td><%= customer.orders_total_quantity %></td>
+        <td><%= t('.table.payment_status', status: customer.status) %></td>
+        <td><%= convert_boolean customer.payment_status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
