@@ -1,13 +1,14 @@
-<header style="margin:5px;">
+<header class="card" style="margin:10px 0 10px 0;">
   <% if admin_user_signed_in? %>
-    <div class="container text-center">
+    <div class="container text-center card-body">
       <div class="row">
         <div class="col">
           <% { 
           'Product' => new_admin_product_path, 
           'AdminUser' => new_admin_admin_user_path,
           'Customer' => new_admin_customer_path,
-          'MarketUser' => new_admin_market_user_path
+          'MarketUser' => new_admin_market_user_path,
+          'Page' => new_admin_page_path,
           }.each do |name, path| %>
             <% if can? :new, name.constantize %>
               <%= link_to t('layout.admin.header.links.new', name: name), path, class: 'btn btn-success' %>
@@ -18,7 +19,8 @@
           'Product' => admin_products_path, 
           'AdminUser' => admin_admin_users_path,
           'Customer' => admin_customers_path,
-          'MarketUser' => admin_market_users_path
+          'MarketUser' => admin_market_users_path,
+          'Page' => admin_pages_path
           }.each do |name, path| %>
             <% if can? :read, name.constantize %>
               <%= link_to t('layout.admin.header.links.read', name: name.pluralize), path, class: 'btn btn-primary' %>

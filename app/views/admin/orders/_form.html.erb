@@ -11,7 +11,7 @@
   <% end %>
   <div class="mb-3">
     <%= form.label t('admin.orders.form.product'), class: "form-label" %>
-    <%= form.select :product_id, Product.all.map {|product| [product.title, product.id]}, {}, class: "form-select" %>
+    <%= form.select :product_id, title_and_ids_from_products, {}, class: "form-select" %>
   </div>
   <div class="mb-3">
     <%= form.label t('admin.orders.form.current_price'), class: "form-label" %>
@@ -21,5 +21,5 @@
     <%= form.label t('admin.orders.form.quantity'), class: "form-label" %>
     <%= form.number_field :quantity, class: "form-control" %>
   </div>
-  <%= form.submit t('admin.orders.form.submit'), class:'btn btn-primary' %>
+  <%= form.submit t("admin.orders.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
 <% end %>

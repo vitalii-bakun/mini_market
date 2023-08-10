@@ -5,7 +5,7 @@
     <%= display_meta_tags(site: "MiniMarket", reverse: true) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "market" %>
   </head>
   <body>
     <div class="container text-center">
@@ -15,6 +15,6 @@
       <%= yield %>
       <%= render 'layouts/market/footer' %>
     </div>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "market" %>
   </body>
 </html>

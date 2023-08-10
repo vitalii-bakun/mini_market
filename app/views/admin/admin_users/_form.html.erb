@@ -23,7 +23,7 @@
   </div>
   <div class="mb-3">
     <%= form.label t('admin.admin_users.form.role'), class: "form-label" %>
-    <%= form.select :role, AdminUser.roles.keys, {}, class: "form-select" %>
+    <%= form.select :role, roles_from_admin_users, {}, class: "form-select" %>
   </div>
-  <%= form.submit t('admin.admin_users.form.submit'), class:'btn btn-primary' %>
+  <%= form.submit t("admin.admin_users.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
 <% end %>

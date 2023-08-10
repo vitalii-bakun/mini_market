@@ -1,0 +1,11 @@
+<% set_meta_tags(
+  title: @page.title, 
+  description: @page.body,
+  keywords: @page.title.split.join(', ')
+  ) %>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title"><%= @page.title %></h1>
+    <div class="card-text" style="padding: 5px 0 5px 0;"><%= @page.body %></div>
+  </div>
+</div>

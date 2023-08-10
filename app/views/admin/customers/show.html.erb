@@ -4,7 +4,7 @@
 <h1><%= t(".title", name: @customer.first_name) %></h1>
 <div class="card">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= link_to t('.card.market_user'), admin_market_user_path(@customer.market_user) %></li>
+    <li class="list-group-item"> <%= t('.card.author') %> <%= link_to @customer.market_user.email, admin_market_user_path(@customer.market_user) %></li>
     <li class="list-group-item"><%= t('.card.first_name') %> <%= @customer.first_name %></li>
     <li class="list-group-item"><%= t('.card.address') %> <%= @customer.address %></li>
     <li class="list-group-item"><%= t('.card.phone') %> <%= @customer.phone %></li>

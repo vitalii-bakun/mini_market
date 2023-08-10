@@ -50,7 +50,6 @@ module Admin
               :first_name,
               :address,
               :phone,
-              :uuid,
               :comment,
               :dont_call,
               :payment_method,

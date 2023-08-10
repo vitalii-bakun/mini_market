@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 require 'faker'
 require 'securerandom'
 
@@ -23,7 +15,7 @@ puts 'Create MarketUsers'
                     phone: Faker::PhoneNumber.phone_number_with_country_code)
 end
 
-puts 'Create customers'
+puts 'Create Customers'
 20.times do
   payment_method = %i[service cash].sample
   status = %i[new_order send_order done_order canceled_order].sample
@@ -37,7 +29,7 @@ puts 'Create customers'
                   market_user: MarketUser.all.sample)
 end
 
-puts 'Create products'
+puts 'Create Products'
 20.times do
   p = Product.new(title: Faker::Commerce.product_name,
                   price: Faker::Commerce.price,
@@ -55,7 +47,7 @@ puts 'Create products'
   p.save
 end
 
-puts 'Create orders'
+puts 'Create Orders'
 Customer.all.each do |customer|
   # add products in order
   random_count_orders = rand((1..10))
@@ -71,7 +63,19 @@ Customer.all.each do |customer|
   end
 end
 
-puts 'Create carts'
+puts 'Create Carts'
 10.times do
-  Cart.create(market_user: MarketUser.all.sample, product: Product.all.sample, quantity: rand(1..10))
+  Cart.create(market_user: MarketUser.all.sample,
+              product: Product.all.sample,
+              quantity: rand(1..10))
 end
+
+puts 'Create Pages'
+5.times do
+  Page.create(title: Faker::Commerce.product_name,
+              body: Faker::Lorem.paragraph,
+              available: Faker::Boolean.boolean,
+              admin_user: AdminUser.all.sample)
+end
+
+puts 'Done!'

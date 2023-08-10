@@ -1,8 +1,5 @@
 <% set_meta_tags(
-  title: "Cart"
+  title: t('.title')
   ) %>
-
-<div id="cart-table">
-  <%= render partial: 'table', locals: { carts: @carts } %>
-</div>
+<%= render partial: 'table', locals: { carts: @carts } %>
 <%= link_to t('.make'), new_customer_path, class: 'btn btn-primary' %>

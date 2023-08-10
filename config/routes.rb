@@ -19,11 +19,13 @@ Rails.application.routes.draw do
 
     resources :products, only: %i[index show] do
       delete 'cart/destroy', to: 'carts#destroy', as: 'cart_destroy'
-      post 'cart/create', to: 'carts#create', as: 'cart_create'
-      post 'cart/update', to: 'carts#update', as: 'cart_update'
+      post 'cart/add', to: 'carts#add', as: 'cart_add'
+      delete 'cart/remove', to: 'carts#remove', as: 'cart_remove'
+      match 'cart/update', to: 'carts#update', as: 'cart_update', via: %i[put patch]
     end
 
     resources :customers, only: %i[index new create show]
+    resources :pages, only: %i[show]
   end
 
   # Users belong to the Admin
@@ -41,12 +43,9 @@ Rails.application.routes.draw do
     resources :market_users
     resources :admin_users
     resources :products
+    resources :pages
     get '/', to: 'dashboard#index', as: 'dashboard'
     resources :customers do
-      # get 'status', to: 'customers#status', as: 'customers_status',
-      #                          constraints: { status: /(new|send|done|canceled)_order/ }
-      # get 'orders', to: 'orders#index', as: 'orders'
-
       resources :orders, except: %i[show index]
     end
   end

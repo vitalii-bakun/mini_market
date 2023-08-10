@@ -4,7 +4,7 @@
   <% else %>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Image" preserveAspectRatio="xMidYMid slice" focusable="false">
       <rect width="100%" height="100%" fill="#868e96"></rect>
-      <text x="35%" y="50%" fill="#dee2e6" dy=".3em"><%= t('market.products.product.no_image') %></text>
+      <text x="35%" y="50%" fill="#dee2e6" dy=".3em"><%= t('market.products.no_image') %></text>
     </svg>
   <% end %>
   <div class="card-body">
@@ -14,10 +14,11 @@
       </h5>
     <% end %>
     <p class="card-text"><%= product.description %></p>
-    <%= content_tag :p, currency_with_symbol(product.price), class: "border-primary card" %>
-    <%= form_with url: product_cart_create_path(product), html: { onsubmit: 'return false;', id: "add-product-#{product.id}-to-cart" } do |f| %>
-      <%= f.hidden_field 'quantity', value: 1 %>
-      <%= f.submit t('market.products.product.add_to_cart'), class: "btn btn-primary card-text", onclick: "addToCart('add-product-#{product.id}-to-cart')" %>
+    <p class="border-primary card"><%= currency_with_symbol(product.price) %></p>
+    <% if current_market_user.product_in_cart? product %>
+      <%= render partial: 'market/carts/remove', locals: {product: product} %>
+    <% else %>
+      <%= render partial: 'market/carts/add', locals: {product: product} %>
     <% end %>
   </div>
 </div>

@@ -33,5 +33,5 @@
     <%= form.label t('admin.market_users.form.phone'), class: "form-label" %>
     <%= form.text_field :phone, class: "form-control" %>
   </div>
-  <%= form.submit t('admin.market_users.form.submit'), class:'btn btn-primary' %>
+  <%= form.submit t("admin.market_users.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
 <% end %>

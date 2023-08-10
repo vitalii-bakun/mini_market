@@ -2,37 +2,71 @@ en:
   currency_symbol: '$'
   market:
     carts:
-      create:
-        success: 'Product added to cart'
-        error: "Product could not be added to cart"
+      form:
+        add: 'Add to cart'
+        remove: 'Remove from cart'
+      add: 
+        success: 'Add to cart'
+      remove:
+        success: 'Removed from cart'
+      update:
+        success: 'Quantity has been updated'
+        error: "Quantity could not be updated"
       destroy:
-        success: 'Product removed from cart'
+        success: 'Product has been removed from cart'
       destroy_all: 
-        success: 'All products removed from cart'
+        success: 'All products successfully removed from cart'
       index:
+        title: 'My Cart'
         make: 'Make a new order'
       table:
         name: 'Product name'
-        price: 'Price'
+        price: 'Price for 1 unit'
         quantity: 'Quantity'
         total: 'Total'
         remove: 'Remove'
         update: 'Update'
-        remove: 'Remove'
         remove_all: 'Remove all'
     products:
-      product: 
-        no_image: 'No Image'
-        add_to_cart: 'Add to cart'
+      no_image: 'No Image'
+      index:
+        title: 'Products'
+        description: 'All products'
+        keywords: 'all, products, product'
       show:
-        price: 'Price'
-        buy: 'Buy'
+        price: 'Price:'
     customers:
       cart_empty: "There are no products in your cart"
+      form:
+        first_name: 'First name (Necessarily)'
+        address: 'Address (Necessarily)'
+        phone: 'Phone (Necessarily)'
+        comment: 'Comment (Not Necessarily)'
+        dont_call: "Don't call me"
+        pay:
+          cash: 'Pay cash'
+          service: 'Pay online service'
+        confirm: 'Confirm'
+      table:
+        date: 'Date created'
+        name: 'Product name'
+        price: 'Price'
+        quantity: 'Quantity'
+        total: 'Total'
+        paid: 
+          title: 'Paid'
+          new_order: 'New'
+          send_order: 'Send'
+          canceled_order: 'Canceled'
+          done_order: 'Done'
+      index:
+        title: 'Customers'
       create:
+        title: 'Create a customer'
         success: 'Customer was successfully created'
         error: 'Customer could not be created'
       show:
+        title: 'Customer ID: %{uuid}'
         not_found: 'Customer not found'
         order_info:
           first_name: 'Hello, %{name}!'
@@ -46,38 +80,57 @@ en:
             send_order: 'Send order'
             cancel_order: 'Cancel order'
             done_order: 'Done order'
-        table:
-          name: 'Product name'
-          price: 'Price'
-          quantity: 'Quantity'
-          total: 'Total'
       new:
-        form:
-          first_name: 'First name (Necessarily)'
-          address: 'Address (Necessarily)'
-          phone: 'Phone (Necessarily)'
-          comment: 'Comment (Not Necessarily)'
-          dont_call: "Don't call me"
-          pay:
-            cash: 'Pay cash'
-            card: 'Pay card'
-            service: 'Pay online service'
-          confirm: 'Confirm'
+        title: 'Create a new customer'
   admin:
+    pages:
+      form:
+        title: 'Title'
+        body: 'Content'
+        available: 'Available'
+        author: 'Author'
+        submit: 
+          new: 'Create'
+          edit: 'Update'
+      table:
+        title: 'Title'
+        available: 'Available'
+        control: 'Control'
+      edit:
+        title: 'Edit a page'
+      index:
+        title: 'Pages'
+      new:
+        title: 'Create a new page'
+      update:
+        success: 'Page was successfully updated.'
+      create:
+        success: 'Page was successfully created.'
+      destroy:
+        success: 'Page was successfully deleted.'
+      show:
+        card:
+          title: 'Title:'
+          body: 'Content:'
+          available: 'Available:'
+          author: 'Author:'
     dashboard: 
       index: 
         title: 'Dashboard'
     market_users:
       form:
-        first_name: 'First name'
+        first_name: 'First Name'
         address: 'Address'
         phone: 'Phone'
         email: 'Email'
         submit: 'Send'
         password: 'Password'
         password_confirmation: 'Password confirmation'
+        submit:
+          new: 'Create'
+          edit: 'Update'
       table:
-        first_name: 'First name'
+        first_name: 'First Name'
         address: 'Address'
         phone: 'Phone'
         email: 'Email'
@@ -109,7 +162,6 @@ en:
         first_name: 'First name'
         address: 'Address'
         phone: 'Phone'
-        uuid: 'UUID'
         comment: 'Comment'
         dont_call: "Don't call me"
         payment_status: 'Payment status'
@@ -121,8 +173,11 @@ en:
           name: 'Status order: '
           new_order: 'New'
           send_order: 'Send'
-          canceled_order: 'Cancel'
+          canceled_order: 'Canceled'
           done_order: 'Done'
+        submit:
+          new: 'Create'
+          edit: 'Update'
       table:
         first_name: 'First name'
         address: 'Address'
@@ -149,8 +204,8 @@ en:
       show:
         title: 'Customer: %{name}'
         card:
-          market_user: 'Market user'
-          first_name: 'First name:'
+          author: 'Author:'
+          first_name: 'First Name:'
           address: 'Address:'
           phone: 'Phone:'
           uuid: 'UUID:'
@@ -172,7 +227,9 @@ en:
         description: 'Short description'
         available: 'Available'
         presentation: 'Presentation image'
-        submit: 'Send'
+        submit:
+          new: 'Create'
+          edit: 'Update'
       table:
         title: 'Product name'
         price: 'Price per unit'
@@ -200,13 +257,15 @@ en:
           orders: 'Orders:'
           description: 'Description:'
           available: 'Available:'
-          admin_user: 'Admin user'
+          author: 'Author:'
     orders:
       form:
         product: 'Choose a Product'
         current_price: 'Current price'
         quantity: 'Quantity'
-        submit: 'Send'
+        submit:
+          new: 'Create'
+          edit: 'Update'
       table:
         name: 'Product name'
         price: 'Price per unit'
@@ -229,7 +288,9 @@ en:
         password: 'Password'
         password_confirmation: 'Password confirmation'
         role: 'Role'
-        submit: 'Send'
+        submit:
+          new: 'Create'
+          edit: 'Update'
       table:
         email: 'Email'
         role: 'Role'
@@ -275,13 +336,29 @@ en:
       footer:
         about:
           title: 'About us'
-          content: "Some quick example text to build on the card title and make up the bulk of the card's content."
+          content: "About us content"
         contacts: 
           title: 'Contacts'
+          telephone:
+            name: '+38 (098) 00-00-000'
+            link: '+380980000000'
+          email:
+            name: 'administrator@administrator.com'
+          links:
+            telegram: 'https://www.telegram.org/'
+            instagram: 'https://www.instagram.com/'
+            facebook: 'https://www.facebook.com/'
         pages: 
           title: 'Pages'
       header:
-        link:
+        links:
           logo: 'MiniMarket'
           home: 'Home'
           cart: 'Cart'
+        profile:
+          edit: 'Edit'
+          customers: 'Customers'
+          signout: 'Sign out'
+          signin: 'Sign in'
+          signup: 'Sign up'
+

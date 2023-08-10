@@ -18,12 +18,12 @@
     <%= form.text_field :price, class: "form-control" %>
   </div>
   <div class="mb-3">
-    <%= form.label t('admin.products.form.body'), style: "display: block", class: "form-label" %>
-    <%= form.text_area :body, class: "form-control" %>
-  </div>
-  <div class="mb-3">
     <%= form.label t('admin.products.form.description'), style: "display: block", class: "form-label" %>
     <%= form.text_field :description, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.products.form.body'), style: "display: block", class: "form-label" %>
+    <%= form.text_area :body, class: "form-control" %>
   </div>
   <div class="mb-3">
     <%= form.label t('admin.products.form.available'), class: "form-check-label" %>
@@ -33,5 +33,5 @@
     <%= form.label t('admin.products.form.presentation'), class: "form-label" %>
     <%= form.file_field :presentation, class: "form-control" %>
   </div>
-  <%= form.submit t('admin.products.form.submit'), class:'btn btn-primary' %>
+  <%= form.submit t("admin.products.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
 <% end %>

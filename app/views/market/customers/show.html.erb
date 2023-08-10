@@ -1,5 +1,5 @@
 <% set_meta_tags(
-  title: "Order ID: #{@customer.uuid}"
+  title: t('.title', uuid:@customer.uuid)
   ) %>
 <div>
   <h1><%= t('.order_info.first_name', name: @customer.first_name) %></h1>

@@ -1,43 +1,49 @@
 module Market
   class CartsController < BaseController
+    before_action :set_cart, only: %i[update destroy]
+
     def index
       @carts = user_carts
     end
 
-    def create
+    def add
       user_carts.find_or_create_by(product_id: params[:product_id])
-                .update(quantity: params[:quantity])
-      render_add :created
+                .update(quantity: 1)
+      redirect_to root_path, notice: t('.success')
+    end
+
+    def remove
+      user_carts.find_by(product_id: params[:product_id])
+                .destroy
+      redirect_to root_path, notice: t('.success')
     end
 
     def update
-      user_carts.find_by(product_id: params[:product_id]).update(quantity: params[:quantity])
-      render_table
+      if @cart.update(quantity: params[:quantity])
+        redirect_to cart_path, notice: t('.success')
+      else
+        redirect_to cart_path, alert: t('.error')
+      end
     end
 
     def destroy
-      user_carts.find_by(product_id: params[:product_id])
-                .destroy
-      render_table
+      @cart.destroy
+      redirect_to cart_path, notice: t('.success')
     end
 
     def destroy_all
       user_carts.destroy_all
-      render_table
+      redirect_to cart_path, notice: t('.success')
     end
 
     private
 
+    def set_cart
+      @cart = user_carts.find_by(product_id: params[:product_id])
+    end
+
     def user_carts
       current_market_user.carts
-    end
-
-    def render_add(status)
-      render partial: 'add', layout: false, status:
-    end
-
-    def render_table(status = :ok)
-      render partial: 'table', locals: { carts: current_market_user.carts }, layout: false, status:
     end
   end
 end

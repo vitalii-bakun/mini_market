@@ -1,0 +1,12 @@
+<% set_meta_tags(
+  title: @page.title
+  ) %>
+<h1><%= @page.title %> </h1>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= t('.card.title') %> <%= @page.title %></li>
+    <li class="list-group-item"><%= t('.card.body') %> <%= @page.body %></li>
+    <li class="list-group-item"><%= t('.card.available')%> <%= convert_boolean @page.available %></li>
+    <li class="list-group-item"><%= t('.card.author')%> <%= link_to @page.admin_user.email, admin_admin_user_path(@page.admin_user) %></li>
+  </ul>
+</div>

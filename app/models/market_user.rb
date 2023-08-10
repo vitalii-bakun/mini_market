@@ -14,6 +14,10 @@ class MarketUser < ApplicationRecord
     carts.sum(&:quantity)
   end
 
+  def product_in_cart?(product)
+    !carts.find_by(product_id: product.id).nil?
+  end
+
   def self.from_omniauth(auth)
     info = auth['info']
     find_or_create_by(email: info['email']) do |user|

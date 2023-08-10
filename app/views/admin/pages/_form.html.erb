@@ -1,0 +1,29 @@
+<%= form_with(model: page, url: url) do |form| %>
+  <% if page.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+      <ul>
+        <% page.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label t('admin.pages.form.title'), class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.pages.form.body'), class: "form-label" %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label t('admin.pages.form.author'), class: "form-label" %>
+    <%= form.select :admin_user_id, emails_and_ids_from_admin_users, {}, class: "form-select" %>
+  </div>
+   <div class="mb-3">
+    <%= form.check_box :available, class: "form-check-input" %>
+    <%= form.label t('admin.pages.form.available'), class: "form-check-label" %>
+  </div>
+  <%= form.submit t("admin.pages.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
+<% end %>

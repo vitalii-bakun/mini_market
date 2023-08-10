@@ -24,9 +24,12 @@ class Ability
   end
 
   def moderator
-    can :status, Customer
-    can :read, Order
+    can :read, :dashboard
+    can :manage, Customer
+    can :manage, Order
     can :manage, Product
+    can :manage, MarketUser
     cannot :manage, AdminUser
+    cannot :manage, Page
   end
 end

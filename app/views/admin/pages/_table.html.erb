@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><%= t('admin.pages.table.title') %></th>
+      <th scope="col"><%= t('admin.pages.table.available') %></th>
+      <th scope="col"><%= t('admin.pages.table.control') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pages.each do |page| %>
+      <tr>
+        <th scope="row"><%= page.id %></th>
+        <td><%= page.title %></td>
+        <td><%= convert_boolean page.available %></td>
+        <td>
+           <%= render partial: 'admin/shared/control_panel', locals: {
+            name_model: Page,
+            show_model_path: admin_page_path(page), 
+            edit_model_path: edit_admin_page_path(page), 
+            delete_model_path: admin_page_path(page) } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

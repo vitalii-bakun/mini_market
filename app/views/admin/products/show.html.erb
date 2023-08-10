@@ -20,6 +20,6 @@
     <li class="list-group-item"><%= t('.card.available') %> <%= convert_boolean @product.available %></li>
     <li class="list-group-item"><%= t('.card.price') %> <%= @product.price %></li>
     <li class="list-group-item"><%= t('.card.orders') %> <%= @product.orders.count %></li>
-    <li class="list-group-item"><%= link_to t('.card.admin_user'), admin_admin_user_path(@product.admin_user) %></li>
+    <li class="list-group-item"><%= t('.card.author') %><%= link_to @product.admin_user.email, admin_admin_user_path(@product.admin_user) %></li>
   </ul>
 </div>

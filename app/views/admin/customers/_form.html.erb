@@ -22,10 +22,6 @@
     <%= form.phone_field :phone, class: "form-control" %>
   </div>
   <div class="mb-3">
-    <%= form.label t('admin.customers.form.uuid'), style: "display: block", class: "form-label" %>
-    <%= form.text_field :uuid, class: "form-control" %>
-  </div>
-  <div class="mb-3">
     <%= form.label t('admin.customers.form.comment'), style: "display: block", class: "form-label" %>
     <%= form.text_area :comment, class: "form-control" %>
   </div>
@@ -45,5 +41,5 @@
     <%= form.label t('admin.customers.form.status.name'), style: "display: block", class: "form-label" %>
     <%= form.select :status, customer_statuses_keys, class: "form-control" %>
   </div>
-  <%= form.submit class:'btn btn-primary' %>
+  <%= form.submit t("admin.customers.form.submit.#{params[:action]}"), class:'btn btn-primary' %>
 <% end %>
